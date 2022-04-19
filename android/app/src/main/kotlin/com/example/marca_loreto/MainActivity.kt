@@ -1,4 +1,4 @@
-package com.example.marca_loreto
+package com.bufeotec.marcaLoreto
 
 import io.flutter.embedding.android.FlutterActivity
 
