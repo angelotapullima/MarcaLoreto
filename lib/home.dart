@@ -16,7 +16,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    pageList.add(Container());
+    pageList.add(Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.red,
+    ));
     pageList.add(Container());
     pageList.add(Container());
     pageList.add(Container());
@@ -82,11 +86,11 @@ class _HomePageState extends State<HomePage> {
                                 width: responsive.ip(3.5),
                                 child: (bottomBloc.page == 0)
                                     ? SvgPicture.asset(
-                                        'assets/svg/tabs/home_tab.svg',
+                                        'assets/svg/tabs/Inicio.svg',
                                         color: Colors.white,
                                       )
                                     : SvgPicture.asset(
-                                        'assets/svg/tabs/home_tab.svg',
+                                        'assets/svg/tabs/Inicio.svg',
                                         color: Colors.blue,
                                       ), //Image.assege.asset('assets/logo_largo.svg'),
                               ),
@@ -109,11 +113,11 @@ class _HomePageState extends State<HomePage> {
                                 width: responsive.ip(3.5),
                                 child: (bottomBloc.page == 1)
                                     ? SvgPicture.asset(
-                                        'assets/svg/tabs/home_tab.svg',
+                                        'assets/svg/tabs/Descubre.svg',
                                         color: Colors.grey,
                                       )
                                     : SvgPicture.asset(
-                                        'assets/svg/tabs/home_tab.svg',
+                                        'assets/svg/tabs/Descubre.svg',
                                         color: Colors.blue,
                                       ), //Image.asseage.asset('assets/logo_largo.svg'),
                               ),
@@ -136,11 +140,11 @@ class _HomePageState extends State<HomePage> {
                                 width: responsive.ip(3.5),
                                 child: (bottomBloc.page == 2)
                                     ? SvgPicture.asset(
-                                        'assets/svg/tabs/home_tab.svg',
+                                        'assets/svg/tabs/Experiencias.svg',
                                         color: Colors.grey,
                                       )
                                     : SvgPicture.asset(
-                                        'assets/svg/tabs/home_tab.svg',
+                                        'assets/svg/tabs/Experiencias.svg',
                                         color: Colors.blue,
                                       ), //Image.asset('assets/logo_largo.svg'),
                               ),
@@ -163,16 +167,43 @@ class _HomePageState extends State<HomePage> {
                                 width: responsive.ip(3.5),
                                 child: (bottomBloc.page == 3)
                                     ? SvgPicture.asset(
-                                        'assets/svg/tabs/home_tab.svg',
+                                        'assets/svg/tabs/Productos.svg',
                                         color: Colors.grey,
                                       )
                                     : SvgPicture.asset(
-                                        'assets/svg/tabs/home_tab.svg',
+                                        'assets/svg/tabs/Productos.svg',
                                         color: Colors.blue,
                                       ), //Image'assets/logo_largo.svg'),
                               ),
                               CircleAvatar(
                                 backgroundColor: (bottomBloc.page == 3) ? Colors.grey : Colors.blue,
+                                radius: 2.5,
+                              ),
+                            ],
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            bottomBloc.changePage(4);
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: responsive.ip(3.5),
+                                width: responsive.ip(3.5),
+                                child: (bottomBloc.page == 4)
+                                    ? SvgPicture.asset(
+                                        'assets/svg/tabs/Vivencias.svg',
+                                        color: Colors.grey,
+                                      )
+                                    : SvgPicture.asset(
+                                        'assets/svg/tabs/Vivencias.svg',
+                                        color: Colors.blue,
+                                      ), //Image'assets/logo_largo.svg'),
+                              ),
+                              CircleAvatar(
+                                backgroundColor: (bottomBloc.page == 4) ? Colors.grey : Colors.blue,
                                 radius: 2.5,
                               ),
                             ],
