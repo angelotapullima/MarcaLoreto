@@ -2,10 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
-import 'package:marca_loreto/src/page/categories/maps/mapa_todos_negocios.dart';
-import 'package:marca_loreto/src/page/recomendaciones.dart';
-import 'package:marca_loreto/src/page/init.dart';
-import 'package:marca_loreto/src/page/user.dart';
 import 'package:marca_loreto/src/utils/responsive.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,10 +16,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    pageList.add(const InitPage());
-    pageList.add(const MapaPage());
-    pageList.add(const Experients());
-    pageList.add(const UserPage());
+    pageList.add(Container());
+    pageList.add(Container());
+    pageList.add(Container());
+    pageList.add(Container());
     //pageList.add(UserPage());
 
     super.initState();
@@ -61,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(.2),
                       borderRadius: BorderRadius.circular(30),
-                    /*   boxShadow: [
+                      /*   boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 5,
