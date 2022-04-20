@@ -8,6 +8,7 @@ class SeccionModel {
   String? subtitle2SeccionEn;
   String? imageSeccion;
   String? updateData;
+  String? activarEnglish;
 
   SeccionModel({
     this.idSeccion,
@@ -19,6 +20,7 @@ class SeccionModel {
     this.subtitle2SeccionEn,
     this.imageSeccion,
     this.updateData,
+    this.activarEnglish,
   });
 
   Map<String, dynamic> toJson() => {
@@ -31,6 +33,7 @@ class SeccionModel {
         'subtitle2SeccionEn': subtitle2SeccionEn,
         'imageSeccion': imageSeccion,
         'updateData': updateData,
+        'activarEnglish': activarEnglish,
       };
 
   static List<SeccionModel> fromJsonList(List<dynamic> json) => json.map((i) => SeccionModel.fromJson(i)).toList();
@@ -45,5 +48,6 @@ class SeccionModel {
         subtitle2SeccionEn: json["subtitle2SeccionEn"],
         imageSeccion: json["imageSeccion"],
         updateData: json["updateData"],
+        activarEnglish: json["activarEnglish"],
       );
 }

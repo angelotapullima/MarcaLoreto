@@ -73,6 +73,8 @@ flutter:
   assets:
     - assets/svg/
     - assets/svg/tabs/
+    - assets/svg/icons/
+    - assets/img/logos/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
+import 'package:marca_loreto/src/page/Tabs/Inicio/inicio.dart';
 import 'package:marca_loreto/src/utils/responsive.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,11 +18,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    pageList.add(Container(
-      height: double.infinity,
-      width: double.infinity,
-      color: Colors.red,
-    ));
+    pageList.add(const Inicio());
     pageList.add(Container());
     pageList.add(Container());
     pageList.add(Container());

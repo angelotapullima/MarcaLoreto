@@ -7,6 +7,7 @@ class BannerModel {
   String? subtitleBannerEn;
   String? imageBanner;
   String? updateData;
+  String? activarEnglish;
 
   BannerModel({
     this.idBanner,
@@ -17,6 +18,7 @@ class BannerModel {
     this.subtitleBannerEn,
     this.imageBanner,
     this.updateData,
+    this.activarEnglish,
   });
 
   Map<String, dynamic> toJson() => {
@@ -28,6 +30,7 @@ class BannerModel {
         'subtitleBannerEn': subtitleBannerEn,
         'imageBanner': imageBanner,
         'updateData': updateData,
+        'activarEnglish': activarEnglish,
       };
 
   static List<BannerModel> fromJsonList(List<dynamic> json) => json.map((i) => BannerModel.fromJson(i)).toList();
@@ -41,5 +44,6 @@ class BannerModel {
         subtitleBannerEn: json["subtitleBannerEn"],
         imageBanner: json["imageBanner"],
         updateData: json["updateData"],
+        activarEnglish: json["activarEnglish"],
       );
 }
