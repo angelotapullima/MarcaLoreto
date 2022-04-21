@@ -36,7 +36,7 @@ class SeccionDatabase {
     try {
       final Database db = await dbprovider.getDatabase();
       List<SeccionModel> list = [];
-      List<Map> maps = await db.rawQuery("SELECT * FROM Seccion WHERE idSeccion = '$idSeccion'");
+      List<Map> maps = await db.rawQuery("SELECT * FROM Seccion WHERE idSeccion='$idSeccion'");
 
       if (maps.isNotEmpty) list = SeccionModel.fromJsonList(maps);
       return list;

@@ -10,12 +10,13 @@ class DatabaseHelper {
   Future<Database> get database async => _database ??= await getDatabase();
 
   Future<Database> getDatabase() async {
-    final String path = join(await getDatabasesPath(), 'marcaLoreto2.db');
+    final String path = join(await getDatabasesPath(), 'marcaLoreto3.db');
     return openDatabase(path, onCreate: (db, version) {
       //Inicio
       db.execute(InicioDB.tableBannerSql);
       db.execute(InicioDB.tableSeccionSql);
       db.execute(InicioDB.tableBlogsSql);
+      db.execute(InicioDB.tableGaleriaSql);
     }, version: 1, onDowngrade: onDatabaseDowngradeDelete);
   }
 }

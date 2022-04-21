@@ -131,7 +131,7 @@ class _BannersState extends State<Banners> {
                               ),
                             ),
                             SizedBox(
-                              height: ScreenUtil().setHeight(20),
+                              height: ScreenUtil().setHeight(70),
                             ),
                           ],
                         ),
@@ -144,7 +144,8 @@ class _BannersState extends State<Banners> {
                   onPageChanged: (index, page) {
                     _controlller.changeIndex(index);
                   },
-                  autoPlay: false,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 10),
                   viewportFraction: 1.0,
                   enlargeCenterPage: false,
                 ),

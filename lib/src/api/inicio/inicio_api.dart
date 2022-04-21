@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:marca_loreto/src/dataBase/Inicio/banner_database.dart';
 import 'package:marca_loreto/src/dataBase/Inicio/blog_database.dart';
+import 'package:marca_loreto/src/dataBase/Inicio/galeria_database.dart';
 import 'package:marca_loreto/src/dataBase/Inicio/seccion_database.dart';
 import 'package:marca_loreto/src/model/inicio/banner_model.dart';
 import 'package:marca_loreto/src/model/inicio/blog_model.dart';
+import 'package:marca_loreto/src/model/inicio/galeria_model.dart';
 import 'package:marca_loreto/src/model/inicio/seccion_model.dart';
 import 'package:marca_loreto/src/utils/constants.dart';
 import 'package:http/http.dart' as http;
@@ -13,6 +15,7 @@ class InicioApi {
   final bannerDB = BannerDatabase();
   final seccionDB = SeccionDatabase();
   final blogDB = BlogDatabase();
+  final galeriaDB = GaleriaDatabase();
   Future<bool> listarInicio() async {
     try {
       final url = Uri.parse('$apiBaseURL/api/App/ws_listar_home');
@@ -47,29 +50,27 @@ class InicioApi {
       }
 
       //Almacenar Datos de Seccion
-      for (var i = 0; i < decodedData["seccion2"].length; i++) {
-        var data = decodedData["seccion2"][i];
+      var data = decodedData["seccion2"];
 
-        SeccionModel seccionModel = SeccionModel();
-        seccionModel.idSeccion = data["id_sec_home_join"];
-        seccionModel.tituloSeccion = data["sec_home_join_titulo"];
-        seccionModel.titleSeccionEn = data["sec_home_join_titulo_en"];
-        seccionModel.subtitulo1Seccion = data["sec_home_join_subtitulo1"];
-        seccionModel.subtitle1SeccionEn = data["sec_home_join_subtitulo1_en"];
-        seccionModel.subtitulo2Seccion = data["sec_home_join_subtitulo2"];
-        seccionModel.subtitle2SeccionEn = data["sec_home_join_subtitulo2_en"];
-        seccionModel.imageSeccion = data["sec_home_join_imagen"];
-        seccionModel.updateData = data["sec_home_join_ult_modificacion"];
+      SeccionModel seccionModel = SeccionModel();
+      seccionModel.idSeccion = data["id_sec_home_join"];
+      seccionModel.tituloSeccion = data["sec_home_join_titulo"];
+      seccionModel.titleSeccionEn = data["sec_home_join_titulo_en"];
+      seccionModel.subtitulo1Seccion = data["sec_home_join_subtitulo1"];
+      seccionModel.subtitle1SeccionEn = data["sec_home_join_subtitulo1_en"];
+      seccionModel.subtitulo2Seccion = data["sec_home_join_subtitulo2"];
+      seccionModel.subtitle2SeccionEn = data["sec_home_join_subtitulo2_en"];
+      seccionModel.imageSeccion = data["sec_home_join_imagen"];
+      seccionModel.updateData = data["sec_home_join_ult_modificacion"];
 
-        final language = await seccionDB.getSeccionById(seccionModel.idSeccion.toString());
-        if (language.isNotEmpty) {
-          seccionModel.activarEnglish = language[0].activarEnglish;
-        } else {
-          seccionModel.activarEnglish = '0';
-        }
-
-        await seccionDB.insertSeccion(seccionModel);
+      final language = await seccionDB.getSeccionById(seccionModel.idSeccion.toString());
+      if (language.isNotEmpty) {
+        seccionModel.activarEnglish = language[0].activarEnglish;
+      } else {
+        seccionModel.activarEnglish = '0';
       }
+
+      await seccionDB.insertSeccion(seccionModel);
 
       //Almacenar Datos de Blog
       for (var i = 0; i < decodedData["blogs"].length; i++) {
@@ -92,7 +93,7 @@ class InicioApi {
         blogModel.vistasBlog = data["blog_vistas"];
         blogModel.estadoBlog = data["blog_estado"];
 
-        final language = await seccionDB.getSeccionById(blogModel.idBlog.toString());
+        final language = await blogDB.getBlogById(blogModel.idBlog.toString());
         if (language.isNotEmpty) {
           blogModel.activarEnglish = language[0].activarEnglish;
         } else {
@@ -100,6 +101,28 @@ class InicioApi {
         }
 
         await blogDB.insertBlog(blogModel);
+      }
+
+      //Almacenar Datos de Galeria
+      for (var i = 0; i < decodedData["galeria"].length; i++) {
+        var data = decodedData["galeria"][i];
+
+        GaleriaModel galeriaModel = GaleriaModel();
+        galeriaModel.idGaleria = data["id_galeria"];
+        galeriaModel.tituloGaleria = data["galeria_titulo"];
+        galeriaModel.titleGaleriaEn = data["galeria_titulo_en"];
+        galeriaModel.imageGaleria = data["galeria_imagen"];
+        galeriaModel.linkGaleria = data["galeria_link"];
+        galeriaModel.estadoGaleria = data["galeria_estado"];
+
+        final language = await galeriaDB.getGaleriaById(galeriaModel.idGaleria.toString());
+        if (language.isNotEmpty) {
+          galeriaModel.activarEnglish = language[0].activarEnglish;
+        } else {
+          galeriaModel.activarEnglish = '0';
+        }
+
+        await galeriaDB.insertGaleria(galeriaModel);
       }
 
       return true;

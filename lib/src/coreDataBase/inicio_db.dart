@@ -39,4 +39,13 @@ class InicioDB {
       ' vistasBlog TEXT,'
       ' activarEnglish TEXT,'
       ' estadoBlog TEXT)';
+
+  static const String tableGaleriaSql = 'CREATE TABLE Galeria('
+      ' idGaleria TEXT PRIMARY KEY,'
+      ' tituloGaleria TEXT,'
+      ' titleGaleriaEn TEXT,'
+      ' imageGaleria TEXT,'
+      ' linkGaleria TEXT,'
+      ' estadoGaleria TEXT,'
+      ' activarEnglish TEXT)';
 }
