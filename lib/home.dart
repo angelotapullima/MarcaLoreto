@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                               ),
                               Text(
-                                'Inicio',
+                                '   Inicio   ',
                                 style: TextStyle(
                                   color: (bottomBloc.page == 0) ? const Color(0xFF008d36) : Colors.black,
                                   fontSize: ScreenUtil().setSp(11),
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                               ),
                               Text(
-                                'Descubre',
+                                '  Descubre  ',
                                 style: TextStyle(
                                   color: (bottomBloc.page == 1) ? const Color(0xFF008d36) : Colors.black,
                                   fontSize: ScreenUtil().setSp(11),
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                               ),
                               Text(
-                                'Productos',
+                                ' Productos  ',
                                 style: TextStyle(
                                   color: (bottomBloc.page == 3) ? const Color(0xFF008d36) : Colors.black,
                                   fontSize: ScreenUtil().setSp(11),
@@ -209,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                               ),
                               Text(
-                                'Vivencias',
+                                '  Vivencias ',
                                 style: TextStyle(
                                   color: (bottomBloc.page == 4) ? const Color(0xFF008d36) : Colors.black,
                                   fontSize: ScreenUtil().setSp(11),
