@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
 import 'package:marca_loreto/src/model/inicio/blog_model.dart';
 import 'package:marca_loreto/src/utils/constants.dart';
@@ -16,9 +17,6 @@ class Blogs extends StatelessWidget {
     return Container(
       color: Colors.white,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: ScreenUtil().setWidth(16),
-      ),
       child: StreamBuilder(
         stream: inicioBloc.blogStream,
         builder: (context, AsyncSnapshot<List<BlogModel>> snapshot) {
@@ -29,13 +27,25 @@ class Blogs extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: ScreenUtil().setHeight(32),
+                    ),
                     //Titulo
-                    Text(
-                      (snapshot.data![0].activarEnglish == '1') ? 'Blog and News' : 'Blog y Noticias',
-                      style: TextStyle(
-                        fontSize: ScreenUtil().setSp(20),
-                        fontWeight: FontWeight.w700,
-                      ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: ScreenUtil().setWidth(16),
+                        ),
+                        Text(
+                          (snapshot.data![0].activarEnglish == '1') ? 'Blog and News' : 'Blog y Noticias',
+                          style: TextStyle(
+                            fontSize: ScreenUtil().setSp(20),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const Spacer(),
+                        SizedBox(width: ScreenUtil().setWidth(150), child: SvgPicture.asset('assets/svg/icons/vector_title_inicio.svg')),
+                      ],
                     ),
                     SizedBox(
                       height: ScreenUtil().setHeight(32),

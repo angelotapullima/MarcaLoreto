@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marca_loreto/src/bloc/provider_bloc.dart';
 import 'package:marca_loreto/src/page/Tabs/Inicio/banners.dart';
 import 'package:marca_loreto/src/page/Tabs/Inicio/blogs.dart';
 import 'package:marca_loreto/src/page/Tabs/Inicio/galeria.dart';
 import 'package:marca_loreto/src/page/Tabs/Inicio/secciones.dart';
+import 'package:marca_loreto/src/page/change_language.dart';
 import 'package:marca_loreto/src/widget/sliver_header_delegate.dart';
 
 class Inicio extends StatefulWidget {
@@ -65,10 +64,8 @@ class HeaderMarcaLoreto extends StatefulWidget {
 }
 
 class _HeaderMarcaLoretoState extends State<HeaderMarcaLoreto> {
-  final _controller = ControllerLanguage();
   @override
   Widget build(BuildContext context) {
-    final inicioBloc = ProviderBloc.inicio(context);
     return SliverPersistentHeader(
       floating: true,
       delegate: SliverCustomHeaderDelegate(
@@ -83,71 +80,11 @@ class _HeaderMarcaLoretoState extends State<HeaderMarcaLoreto> {
                 height: ScreenUtil().setHeight(48),
                 child: Image.asset('assets/img/logos/logo.png'),
               ),
-              AnimatedBuilder(
-                  animation: _controller,
-                  builder: (_, t) {
-                    return PopupMenuButton(
-                        onSelected: (value) {
-                          _controller.changeActivate(value.toString());
-                          inicioBloc.updateLanguage(value.toString());
-                        },
-                        icon: SizedBox(
-                          height: ScreenUtil().setHeight(48),
-                          width: ScreenUtil().setWidth(48),
-                          child: SvgPicture.asset(
-                            'assets/svg/icons/Idioma.svg',
-                            color: (_controller.activate == '1') ? const Color(0xFF008d36) : Colors.black,
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(0),
-                        itemBuilder: (context) => [
-                              PopupMenuItem(
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      (_controller.activate == '0') ? Icons.circle : Icons.circle_outlined,
-                                      color: (_controller.activate == '0') ? const Color(0XFFF9B233) : Colors.grey,
-                                      size: ScreenUtil().setHeight(18),
-                                    ),
-                                    SizedBox(
-                                      width: ScreenUtil().setWidth(8),
-                                    ),
-                                    const Text("Español"),
-                                  ],
-                                ),
-                                value: '0',
-                              ),
-                              PopupMenuItem(
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      (_controller.activate == '1') ? Icons.circle : Icons.circle_outlined,
-                                      color: (_controller.activate == '1') ? const Color(0XFFF9B233) : Colors.grey,
-                                      size: ScreenUtil().setHeight(18),
-                                    ),
-                                    SizedBox(
-                                      width: ScreenUtil().setWidth(8),
-                                    ),
-                                    const Text("English"),
-                                  ],
-                                ),
-                                value: '1',
-                              ),
-                            ]);
-                  }),
+              const ChangeLanguage(),
             ],
           ),
         ),
       ),
     );
-  }
-}
-
-class ControllerLanguage extends ChangeNotifier {
-  String activate = '0';
-
-  void changeActivate(String value) {
-    activate = value;
-    notifyListeners();
   }
 }

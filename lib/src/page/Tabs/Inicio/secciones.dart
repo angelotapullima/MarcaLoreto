@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
 import 'package:marca_loreto/src/model/inicio/seccion_model.dart';
 import 'package:marca_loreto/src/utils/constants.dart';
@@ -16,10 +17,6 @@ class Secciones extends StatelessWidget {
     return Container(
       color: Colors.white,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: ScreenUtil().setWidth(16),
-        vertical: ScreenUtil().setHeight(32),
-      ),
       child: StreamBuilder(
         stream: inicioBloc.seccionStream,
         builder: (context, AsyncSnapshot<List<SeccionModel>> snapshot) {
@@ -32,18 +29,31 @@ class Secciones extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      (seccion.activarEnglish == '1') ? '${seccion.titleSeccionEn}' : '${seccion.tituloSeccion}',
-                      style: TextStyle(
-                        fontSize: ScreenUtil().setSp(20),
-                        fontWeight: FontWeight.w700,
-                      ),
+                    SizedBox(
+                      height: ScreenUtil().setHeight(32),
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: ScreenUtil().setWidth(16),
+                        ),
+                        Text(
+                          (seccion.activarEnglish == '1') ? '${seccion.titleSeccionEn}' : '${seccion.tituloSeccion}',
+                          style: TextStyle(
+                            fontSize: ScreenUtil().setSp(20),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const Spacer(),
+                        SizedBox(width: ScreenUtil().setWidth(150), child: SvgPicture.asset('assets/svg/icons/vector_title_inicio.svg')),
+                      ],
                     ),
                     SizedBox(
                       height: ScreenUtil().setHeight(34),
                     ),
-                    SizedBox(
+                    Container(
                       height: ScreenUtil().setHeight(200),
+                      margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                       width: double.infinity,
                       child: CachedNetworkImage(
                         placeholder: (context, url) => const CupertinoActivityIndicator(),
@@ -62,21 +72,27 @@ class Secciones extends StatelessWidget {
                     SizedBox(
                       height: ScreenUtil().setHeight(34),
                     ),
-                    Text(
-                      (seccion.activarEnglish == '1') ? '${seccion.subtitle1SeccionEn}' : '${seccion.subtitulo1Seccion}',
-                      style: TextStyle(
-                        fontSize: ScreenUtil().setSp(16),
-                        fontWeight: FontWeight.w700,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
+                      child: Text(
+                        (seccion.activarEnglish == '1') ? '${seccion.subtitle1SeccionEn}' : '${seccion.subtitulo1Seccion}',
+                        style: TextStyle(
+                          fontSize: ScreenUtil().setSp(16),
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
                     SizedBox(
                       height: ScreenUtil().setHeight(32),
                     ),
-                    Text(
-                      (seccion.activarEnglish == '1') ? '${seccion.subtitle2SeccionEn}' : '${seccion.subtitulo2Seccion}',
-                      style: TextStyle(
-                        fontSize: ScreenUtil().setSp(14),
-                        fontWeight: FontWeight.w400,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
+                      child: Text(
+                        (seccion.activarEnglish == '1') ? '${seccion.subtitle2SeccionEn}' : '${seccion.subtitulo2Seccion}',
+                        style: TextStyle(
+                          fontSize: ScreenUtil().setSp(14),
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                     SizedBox(

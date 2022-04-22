@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
+import 'package:marca_loreto/src/page/Tabs/Descubre/descubre.dart';
+import 'package:marca_loreto/src/page/Tabs/Experiencias/experiencias.dart';
 import 'package:marca_loreto/src/page/Tabs/Inicio/inicio.dart';
+import 'package:marca_loreto/src/page/Tabs/Productos/productos.dart';
+import 'package:marca_loreto/src/page/Tabs/Vivencias/vivencias.dart';
 import 'package:marca_loreto/src/utils/responsive.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,10 +23,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     pageList.add(const Inicio());
-    pageList.add(Container());
-    pageList.add(Container());
-    pageList.add(Container());
-    pageList.add(Container());
+    pageList.add(const Descubre());
+    pageList.add(const Experiencia());
+    pageList.add(const Productos());
+    pageList.add(const Vivencias());
 
     super.initState();
   }

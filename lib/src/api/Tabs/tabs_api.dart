@@ -7,12 +7,12 @@ import 'package:marca_loreto/src/model/descubre/catergoria_descubre_model.dart';
 import 'package:marca_loreto/src/model/descubre/detalle_descubre_model.dart';
 import 'package:marca_loreto/src/utils/constants.dart';
 
-class DescubreApi {
+class TabsApi {
   Future<bool> listarInicio() async {
     final categoryDesDB = CategoriaDescubreDatabase();
     final detailDesDB = DetalleDescubreDatabase();
     try {
-      final url = Uri.parse('$apiBaseURL/api/App/ws_listar_home');
+      final url = Uri.parse('$apiBaseURL/api/App/ws_listar_tabs');
       final resp = await http.post(
         url,
         body: {},
