@@ -97,13 +97,14 @@ class GaleriaImages extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Positioned(
-                            bottom: 2,
-                            right: 2,
-                            child: Icon(
-                              Icons.facebook,
-                              color: Colors.white,
-                            )),
+                        // const Positioned(
+                        //     bottom: 2,
+                        //     right: 2,
+                        //     child: Icon(
+                        //       Icons.facebook,
+                        //       color: Colors.white,
+                        //     )),
+                        Image.asset('assets/img/logos/instagram.png'),
                       ],
                     ),
                   );
