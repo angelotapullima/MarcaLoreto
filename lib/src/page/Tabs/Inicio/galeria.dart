@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
 import 'package:marca_loreto/src/model/inicio/galeria_model.dart';
+import 'package:marca_loreto/src/page/Tabs/Inicio/image_galeria.dart';
 import 'package:marca_loreto/src/utils/constants.dart';
 
 class GaleriaTitulo extends StatelessWidget {
@@ -82,37 +83,65 @@ class GaleriaImages extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   var galeria = snapshot.data![index];
-                  return Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(8), vertical: ScreenUtil().setHeight(8)),
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          height: double.infinity,
-                          width: double.infinity,
-                          child: CachedNetworkImage(
-                            placeholder: (context, url) => const CupertinoActivityIndicator(),
-                            errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
-                            imageUrl: '$apiBaseURL/${galeria.imageGaleria}',
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) {
+                            return ImageGaleria(
+                              imageGalery: galeria.imageGaleria.toString(),
+                            );
+                          },
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            var begin = const Offset(0.0, 1.0);
+                            var end = Offset.zero;
+                            var curve = Curves.ease;
+
+                            var tween = Tween(begin: begin, end: end).chain(
+                              CurveTween(curve: curve),
+                            );
+
+                            return SlideTransition(
+                              position: animation.drive(tween),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(8), vertical: ScreenUtil().setHeight(8)),
+                      child: Stack(
+                        children: [
+                          SizedBox(
+                            height: double.infinity,
+                            width: double.infinity,
+                            child: CachedNetworkImage(
+                              placeholder: (context, url) => const CupertinoActivityIndicator(),
+                              errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
+                              imageUrl: '$apiBaseURL/${galeria.imageGaleria}',
+                              imageBuilder: (context, imageProvider) => Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        // const Positioned(
-                        //     bottom: 2,
-                        //     right: 2,
-                        //     child: Icon(
-                        //       Icons.facebook,
-                        //       color: Colors.white,
-                        //     )),
-                        Image.asset('assets/img/logos/instagram.png'),
-                      ],
+                          // const Positioned(
+                          //     bottom: 2,
+                          //     right: 2,
+                          //     child: Icon(
+                          //       Icons.facebook,
+                          //       color: Colors.white,
+                          //     )),
+                          Image.asset('assets/img/logos/instagram.png'),
+                        ],
+                      ),
                     ),
                   );
                 },

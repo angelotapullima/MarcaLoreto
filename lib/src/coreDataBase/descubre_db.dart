@@ -12,5 +12,5 @@ class DescubreDB {
       ' subtituloDetalleDescubre TEXT,'
       ' imageDetalleDescubre TEXT,'
       ' estadoDetalleDescubre TEXT,'
-      ' destallesDetalleDescubre TEXT)';
+      ' detallesDetalleDescubre TEXT)';
 }

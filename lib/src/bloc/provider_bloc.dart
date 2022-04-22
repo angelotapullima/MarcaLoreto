@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marca_loreto/src/bloc/Inicio/inicio_bloc.dart';
+import 'package:marca_loreto/src/bloc/Tabs/tabs_descubre_bloc.dart';
 import 'package:marca_loreto/src/bloc/bottom_navigation_bloc.dart';
 
 //singleton para obtner una unica instancia del Bloc
@@ -8,6 +9,9 @@ class ProviderBloc extends InheritedWidget {
 
   //Inicio
   final inicioBloc = InicioBloc();
+
+  //Descubre
+  final descubreBloc = TabsDescubreBloc();
 
   ProviderBloc({Key? key, required Widget child}) : super(key: key, child: child);
 
@@ -21,5 +25,10 @@ class ProviderBloc extends InheritedWidget {
   //Inicio
   static InicioBloc inicio(BuildContext context) {
     return (context.dependOnInheritedWidgetOfExactType<ProviderBloc>())!.inicioBloc;
+  }
+
+  //Descubre
+  static TabsDescubreBloc descubre(BuildContext context) {
+    return (context.dependOnInheritedWidgetOfExactType<ProviderBloc>())!.descubreBloc;
   }
 }
