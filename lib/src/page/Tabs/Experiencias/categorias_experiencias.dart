@@ -31,7 +31,6 @@ class CategoriasExperiencias extends StatelessWidget {
                           itemCount: snapshot.data!.length,
                           itemBuilder: (_, i) {
                             var category = snapshot.data![i];
-
                             return InkWell(
                               onTap: () {},
                               child: Container(
