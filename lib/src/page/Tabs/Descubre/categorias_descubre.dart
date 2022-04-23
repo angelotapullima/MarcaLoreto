@@ -3,7 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
-import 'package:marca_loreto/src/model/descubre/catergoria_descubre_model.dart';
+import 'package:marca_loreto/src/model/Categoria/catergoria_model.dart';
+import 'package:marca_loreto/src/page/Tabs/Descubre/detalle_descubre.dart';
 import 'package:marca_loreto/src/utils/constants.dart';
 
 class CategoriaDescubreText extends StatelessWidget {
@@ -11,11 +12,11 @@ class CategoriaDescubreText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoriasDesBloc = ProviderBloc.descubre(context);
+    final categoriasDesBloc = ProviderBloc.categorias(context);
     categoriasDesBloc.getCategoriesDescubre();
     return StreamBuilder(
       stream: categoriasDesBloc.categoriasDesStream,
-      builder: (context, AsyncSnapshot<List<CategoriaDescubreModel>> snapshot) {
+      builder: (context, AsyncSnapshot<List<CategoriaModel>> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data!.isNotEmpty) {
             return SliverList(
@@ -71,10 +72,10 @@ class CategoriasDescubre extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoriasDesBloc = ProviderBloc.descubre(context);
+    final categoriasDesBloc = ProviderBloc.categorias(context);
     return StreamBuilder(
       stream: categoriasDesBloc.categoriasDesStream,
-      builder: (context, AsyncSnapshot<List<CategoriaDescubreModel>> snapshot) {
+      builder: (context, AsyncSnapshot<List<CategoriaModel>> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data!.isNotEmpty) {
             return SliverPadding(
@@ -90,7 +91,32 @@ class CategoriasDescubre extends StatelessWidget {
                   (BuildContext context, int index) {
                     var category = snapshot.data![index];
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation, secondaryAnimation) {
+                              return DetalleDescubre(
+                                categoria: category,
+                              );
+                            },
+                            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                              var begin = const Offset(0.0, 1.0);
+                              var end = Offset.zero;
+                              var curve = Curves.ease;
+
+                              var tween = Tween(begin: begin, end: end).chain(
+                                CurveTween(curve: curve),
+                              );
+
+                              return SlideTransition(
+                                position: animation.drive(tween),
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
+                      },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: ScreenUtil().setWidth(8),
@@ -105,7 +131,7 @@ class CategoriasDescubre extends StatelessWidget {
                                 child: CachedNetworkImage(
                                   placeholder: (context, url) => const CupertinoActivityIndicator(),
                                   errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
-                                  imageUrl: '$apiBaseURL/${category.imageCategoriaDescubre}',
+                                  imageUrl: '$apiBaseURL/${category.imageCategoria}',
                                   imageBuilder: (context, imageProvider) => Container(
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
@@ -123,7 +149,7 @@ class CategoriasDescubre extends StatelessWidget {
                               Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  '${category.nombreCategoriaDescubre}',
+                                  '${category.nombreCategoria}',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: ScreenUtil().setSp(14),

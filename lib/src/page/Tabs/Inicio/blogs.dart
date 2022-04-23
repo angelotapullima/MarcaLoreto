@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
 import 'package:marca_loreto/src/model/inicio/blog_model.dart';
+import 'package:marca_loreto/src/page/Tabs/Inicio/Blogs/detalle_blog.dart';
 import 'package:marca_loreto/src/utils/constants.dart';
 
 class Blogs extends StatelessWidget {
@@ -59,7 +60,32 @@ class Blogs extends StatelessWidget {
                           itemBuilder: (_, i) {
                             var blog = snapshot.data![i];
                             return InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (context, animation, secondaryAnimation) {
+                                      return DetalleBlog(
+                                        idBlog: blog.idBlog.toString(),
+                                      );
+                                    },
+                                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      var begin = const Offset(0.0, 1.0);
+                                      var end = Offset.zero;
+                                      var curve = Curves.ease;
+
+                                      var tween = Tween(begin: begin, end: end).chain(
+                                        CurveTween(curve: curve),
+                                      );
+
+                                      return SlideTransition(
+                                        position: animation.drive(tween),
+                                        child: child,
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
                               child: Container(
                                 height: ScreenUtil().setHeight(300),
                                 width: ScreenUtil().setWidth(156),

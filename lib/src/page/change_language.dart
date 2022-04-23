@@ -29,7 +29,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
               width: ScreenUtil().setWidth(48),
               child: SvgPicture.asset(
                 'assets/svg/icons/Idioma.svg',
-                color: (provider.activateS.value == 1) ? const Color(0xFF008d36) : Colors.black,
+                color: (provider.activateS.value == 1) ? const Color(0xFF008d36) : Colors.grey,
               ),
             ),
             padding: const EdgeInsets.all(0),

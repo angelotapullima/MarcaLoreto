@@ -17,6 +17,9 @@ class InicioBloc {
   final _blogController = BehaviorSubject<List<BlogModel>>();
   Stream<List<BlogModel>> get blogStream => _blogController.stream;
 
+  final _blogByIdController = BehaviorSubject<List<BlogModel>>();
+  Stream<List<BlogModel>> get blogIDStream => _blogByIdController.stream;
+
   final _galeriaController = BehaviorSubject<List<GaleriaModel>>();
   Stream<List<GaleriaModel>> get galeriaStream => _galeriaController.stream;
 
@@ -25,6 +28,7 @@ class InicioBloc {
     _seccionController.close();
     _blogController.close();
     _galeriaController.close();
+    _blogByIdController.close();
   }
 
   void getInicio() async {
@@ -39,11 +43,19 @@ class InicioBloc {
     _galeriaController.sink.add(await _inicioApi.galeriaDB.getGaleria());
   }
 
+  void getBlogById(String idBlog, bool language, String value) async {
+    if (language) {
+      updateLanguage(value);
+    }
+    _blogByIdController.sink.add(await _inicioApi.blogDB.getBlogById(idBlog));
+  }
+
   void updateLanguage(String value) async {
     await _inicioApi.bannerDB.updateLanguage(value);
     await _inicioApi.seccionDB.updateLanguage(value);
     await _inicioApi.blogDB.updateLanguage(value);
     await _inicioApi.galeriaDB.updateLanguage(value);
+
     getInicio();
   }
 }
