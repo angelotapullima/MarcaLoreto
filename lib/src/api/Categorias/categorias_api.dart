@@ -3,13 +3,19 @@ import 'dart:convert';
 import 'package:marca_loreto/src/dataBase/Descubre/categoria_database.dart';
 import 'package:marca_loreto/src/dataBase/Descubre/detalle_categoria_database.dart';
 import 'package:http/http.dart' as http;
+import 'package:marca_loreto/src/dataBase/Negocio/categorias_negocio_database.dart';
+import 'package:marca_loreto/src/dataBase/Negocio/negocios_database.dart';
 import 'package:marca_loreto/src/model/Categoria/catergoria_model.dart';
 import 'package:marca_loreto/src/model/Categoria/detalle_categoria_model.dart';
+import 'package:marca_loreto/src/model/Licenciatarios/categorias_negocio_model.dart';
+import 'package:marca_loreto/src/model/Licenciatarios/negocio_model.dart';
 import 'package:marca_loreto/src/utils/constants.dart';
 
 class CategoriaApi {
   final categoryDesDB = CategoriaDatabase();
   final detailDesDB = DetalleCategoriaDatabase();
+  final cateryNegociosDB = CategoriasNegocioDatabase();
+  final negocioDB = NegociosDatabase();
   Future<bool> listarInicio() async {
     try {
       final url = Uri.parse('$apiBaseURL/api/App/ws_listar_tabs');
@@ -75,6 +81,37 @@ class CategoriaApi {
         detalleModel.detalleCategoriaDetalle = data["app_descubre_det_detalle"];
 
         await detailDesDB.insertDetalle(detalleModel);
+      }
+
+      //Categorias Negocios (Licenciatarios)
+      for (var i = 0; i < decodedData["licenciatarios"]["categorias"].length; i++) {
+        var data = decodedData["licenciatarios"]["categorias"][i];
+
+        CategoriasNegocioModel categoriaModel = CategoriasNegocioModel();
+        categoriaModel.idCategoriaNeg = data["id_app_negocio_cat"];
+        categoriaModel.nombreCategoriaNeg = data["app_negocio_cat_nombre"];
+        categoriaModel.estadoCategoriaNeg = data["app_negocio_cat_estado"];
+
+        await cateryNegociosDB.insertCategoriaNegocio(categoriaModel);
+      }
+
+      //Detalle Negocios (Licenciatarios)
+      for (var i = 0; i < decodedData["licenciatarios"]["detalle"].length; i++) {
+        var data = decodedData["licenciatarios"]["detalle"][i];
+
+        NegocioModel negocioModel = NegocioModel();
+        negocioModel.idNegocio = data["id_app_negocio_det"];
+        negocioModel.idCategoriaNeg = data["id_app_negocio_cat"];
+        negocioModel.nombreNegocio = data["app_negocio_det_nombre"];
+        negocioModel.imageNegocio = data["app_negocio_det_foto"];
+        negocioModel.detalleNegocio = data["app_negocio_det_detalle"];
+        negocioModel.urlNegocio = data["app_negocio_det_web"];
+        negocioModel.facebookNegocio = data["app_negocio_det_facebook"];
+        negocioModel.catalogoNegocio = data["app_negocio_det_file"];
+        negocioModel.dateTimeNegocio = data["app_negocio_det_datetime"];
+        negocioModel.estadoNegocio = data["app_negocio_det_estado"];
+
+        await negocioDB.insertNegocio(negocioModel);
       }
 
       return true;

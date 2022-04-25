@@ -2,28 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
-import 'package:marca_loreto/src/model/Categoria/catergoria_model.dart';
+import 'package:marca_loreto/src/model/Licenciatarios/categorias_negocio_model.dart';
 
-class CategoriasExperienciasNew extends StatefulWidget {
-  const CategoriasExperienciasNew({Key? key}) : super(key: key);
+class CategoriasNegocio extends StatefulWidget {
+  const CategoriasNegocio({Key? key}) : super(key: key);
 
   @override
-  State<CategoriasExperienciasNew> createState() => _CategoriasExperienciasNewState();
+  State<CategoriasNegocio> createState() => _CategoriasNegocioState();
 }
 
-class _CategoriasExperienciasNewState extends State<CategoriasExperienciasNew> {
-  final _controller = ControllerCategoriasExperienciasNew();
+class _CategoriasNegocioState extends State<CategoriasNegocio> {
+  final _controller = ControllerCategoriasNegocio();
   @override
   Widget build(BuildContext context) {
-    final categoriasExpBloc = ProviderBloc.categorias(context);
-    categoriasExpBloc.getCategoriesExpreriencias();
+    final categoriasNegBloc = ProviderBloc.negocio(context);
+    categoriasNegBloc.getCategoiesNegocios();
     return StreamBuilder(
-      stream: categoriasExpBloc.categoriasExpStream,
-      builder: (context, AsyncSnapshot<List<CategoriaModel>> snapshot) {
+      stream: categoriasNegBloc.categoriasNegocioStream,
+      builder: (context, AsyncSnapshot<List<CategoriasNegocioModel>> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data!.isNotEmpty) {
             if (_controller.index == 0) {
-              categoriasExpBloc.getDetalleExperiencia(snapshot.data![0].idCategoria.toString());
+              categoriasNegBloc.getNegociosByIdCategory(snapshot.data![0].idCategoriaNeg.toString());
             }
 
             return Padding(
@@ -44,7 +44,7 @@ class _CategoriasExperienciasNewState extends State<CategoriasExperienciasNew> {
                             return InkWell(
                               onTap: () {
                                 _controller.changeIndex(i);
-                                categoriasExpBloc.getDetalleExperiencia(category.idCategoria.toString());
+                                categoriasNegBloc.getNegociosByIdCategory(category.idCategoriaNeg.toString());
                               },
                               child: Container(
                                 padding: EdgeInsets.symmetric(
@@ -58,7 +58,7 @@ class _CategoriasExperienciasNewState extends State<CategoriasExperienciasNew> {
                                   border: Border.all(color: const Color(0XFFF9B233)),
                                 ),
                                 child: Text(
-                                  '${category.nombreCategoria}',
+                                  '${category.nombreCategoriaNeg}',
                                   style: TextStyle(
                                     color: (_controller.index == i) ? Colors.white : const Color(0XFFF9B233),
                                     fontSize: ScreenUtil().setSp(16),
@@ -84,7 +84,7 @@ class _CategoriasExperienciasNewState extends State<CategoriasExperienciasNew> {
   }
 }
 
-class ControllerCategoriasExperienciasNew extends ChangeNotifier {
+class ControllerCategoriasNegocio extends ChangeNotifier {
   int index = 0;
   void changeIndex(int i) {
     index = i;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marca_loreto/src/page/Tabs/Experiencias/categorias_experiencias_new.dart';
-import 'package:marca_loreto/src/page/Tabs/Experiencias/detalle_experiecia.dart';
+import 'package:marca_loreto/src/page/Tabs/Experiencias/detalle_experiencia.dart';
 import 'package:marca_loreto/src/page/change_language.dart';
 import 'package:provider/provider.dart';
 

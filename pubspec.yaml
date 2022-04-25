@@ -48,6 +48,7 @@ dependencies:
   path_provider: ^2.0.8
   permission_handler: ^8.3.0
   photo_view: ^0.13.0
+  flutter_speed_dial: ^5.1.0
 
 dev_dependencies:
   flutter_test:

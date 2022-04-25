@@ -47,6 +47,8 @@ class CategoriasBloc {
   }
 
   void getDetalleExperiencia(String idCategoriaExperiencia) async {
+    _detalleExperienciaController.sink.add([]);
+    await Future.delayed(const Duration(milliseconds: 5));
     _detalleExperienciaController.sink.add(await _tabsApi.detailDesDB.getDetalleByIdCategoria(idCategoriaExperiencia));
     await _tabsApi.listarInicio();
     _detalleExperienciaController.sink.add(await _tabsApi.detailDesDB.getDetalleByIdCategoria(idCategoriaExperiencia));

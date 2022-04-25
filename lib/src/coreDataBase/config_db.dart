@@ -1,5 +1,6 @@
 import 'package:marca_loreto/src/coreDataBase/categoria_db.dart';
 import 'package:marca_loreto/src/coreDataBase/inicio_db.dart';
+import 'package:marca_loreto/src/coreDataBase/negocio_db.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -11,7 +12,7 @@ class DatabaseHelper {
   Future<Database> get database async => _database ??= await getDatabase();
 
   Future<Database> getDatabase() async {
-    final String path = join(await getDatabasesPath(), 'marcaLoreto.db');
+    final String path = join(await getDatabasesPath(), 'marcaLoreto1.db');
     return openDatabase(path, onCreate: (db, version) {
       //Inicio
       db.execute(InicioDB.tableBannerSql);
@@ -22,6 +23,10 @@ class DatabaseHelper {
       //Descubre
       db.execute(CategoriaDB.tableCategoriaSql);
       db.execute(CategoriaDB.tableDetalleCategoriaSql);
+
+      //Licenciatarios
+      db.execute(NegocioDB.tableCategoriasNegocioSql);
+      db.execute(NegocioDB.tableNegocioSql);
     }, version: 1, onDowngrade: onDatabaseDowngradeDelete);
   }
 }
