@@ -50,8 +50,8 @@ class _HeaderDescubreState extends State<HeaderDescubre> {
     return SliverPersistentHeader(
       floating: true,
       delegate: SliverCustomHeaderDelegate(
-        minHeight: ScreenUtil().setHeight(48),
-        maxHeight: ScreenUtil().setHeight(48),
+        minHeight: ScreenUtil().setHeight(55),
+        maxHeight: ScreenUtil().setHeight(55),
         child: Container(
           color: Colors.white,
           child: Row(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marca_loreto/src/page/Tabs/Experiencias/categorias_experiencias.dart';
+import 'package:marca_loreto/src/page/Tabs/Experiencias/detalle_experiecia.dart';
 import 'package:marca_loreto/src/page/change_language.dart';
 import 'package:marca_loreto/src/widget/sliver_header_delegate.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,10 @@ class _ExperienciaState extends State<Experiencia> {
         slivers: const [
           HeaderExperiencia(),
           CategoriasExperiencias(),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: DetalleExperiencia(),
+          ),
         ],
       )),
     );

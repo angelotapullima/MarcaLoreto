@@ -81,6 +81,7 @@ class _HeaderMarcaLoretoState extends State<HeaderMarcaLoreto> {
                 child: Image.asset('assets/img/logos/logo.png'),
               ),
               const ChangeLanguage(),
+              const Text('Holi'),
             ],
           ),
         ),

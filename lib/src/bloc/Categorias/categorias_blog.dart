@@ -45,4 +45,10 @@ class CategoriasBloc {
     await _tabsApi.listarInicio();
     _categoriasExperienciasController.sink.add(await _tabsApi.categoryDesDB.getCategoriaByTipo('2'));
   }
+
+  void getDetalleExperiencia(String idCategoriaExperiencia) async {
+    _detalleExperienciaController.sink.add(await _tabsApi.detailDesDB.getDetalleByIdCategoria(idCategoriaExperiencia));
+    await _tabsApi.listarInicio();
+    _detalleExperienciaController.sink.add(await _tabsApi.detailDesDB.getDetalleByIdCategoria(idCategoriaExperiencia));
+  }
 }
