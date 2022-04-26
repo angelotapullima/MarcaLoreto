@@ -12,7 +12,7 @@ class DatabaseHelper {
   Future<Database> get database async => _database ??= await getDatabase();
 
   Future<Database> getDatabase() async {
-    final String path = join(await getDatabasesPath(), 'marcaLoreto1.db');
+    final String path = join(await getDatabasesPath(), 'marcaLoreto3.db');
     return openDatabase(path, onCreate: (db, version) {
       //Inicio
       db.execute(InicioDB.tableBannerSql);
@@ -27,6 +27,7 @@ class DatabaseHelper {
       //Licenciatarios
       db.execute(NegocioDB.tableCategoriasNegocioSql);
       db.execute(NegocioDB.tableNegocioSql);
+      db.execute(NegocioDB.tableDocumentSql);
     }, version: 1, onDowngrade: onDatabaseDowngradeDelete);
   }
 }

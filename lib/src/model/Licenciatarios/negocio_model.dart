@@ -9,6 +9,7 @@ class NegocioModel {
   String? catalogoNegocio;
   String? dateTimeNegocio;
   String? estadoNegocio;
+  String? activarEnglish;
 
   //No en base de datos
   String? nombreCategoria;
@@ -25,6 +26,7 @@ class NegocioModel {
     this.dateTimeNegocio,
     this.estadoNegocio,
     this.nombreCategoria,
+    this.activarEnglish,
   });
 
   Map<String, dynamic> toJson() => {
@@ -38,6 +40,7 @@ class NegocioModel {
         'catalogoNegocio': catalogoNegocio,
         'dateTimeNegocio': dateTimeNegocio,
         'estadoNegocio': estadoNegocio,
+        'activarEnglish': activarEnglish,
       };
 
   static List<NegocioModel> fromJsonList(List<dynamic> json) => json.map((i) => NegocioModel.fromJson(i)).toList();
@@ -53,5 +56,6 @@ class NegocioModel {
         catalogoNegocio: json["catalogoNegocio"],
         dateTimeNegocio: json["dateTimeNegocio"],
         estadoNegocio: json["estadoNegocio"],
+        activarEnglish: json["activarEnglish"],
       );
 }

@@ -2,6 +2,7 @@ class NegocioDB {
   static const String tableCategoriasNegocioSql = 'CREATE TABLE CategoriasNegocio('
       ' idCategoriaNeg TEXT PRIMARY KEY,'
       ' nombreCategoriaNeg TEXT,'
+      ' activarEnglish TEXT,'
       ' estadoCategoriaNeg TEXT)';
 
   static const String tableNegocioSql = 'CREATE TABLE Negocio('
@@ -14,5 +15,13 @@ class NegocioDB {
       ' facebookNegocio TEXT,'
       ' catalogoNegocio TEXT,'
       ' dateTimeNegocio TEXT,'
+      ' activarEnglish TEXT,'
       ' estadoNegocio TEXT)';
+
+  static const String tableDocumentSql = 'CREATE TABLE Document('
+      ' idDocument TEXT PRIMARY KEY,'
+      ' documentTitulo TEXT,'
+      ' documentFile TEXT,'
+      ' documentUrlInterno TEXT,'
+      ' documentEstado TEXT)';
 }
