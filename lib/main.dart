@@ -4,6 +4,7 @@ import 'package:marca_loreto/home.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
 import 'package:marca_loreto/src/page/Tabs/Licenciatarios/detalle_negocio.dart';
 import 'package:marca_loreto/src/page/change_language.dart';
+import 'package:marca_loreto/src/page/splash.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: const Color(0xFFF2F7F5),
               canvasColor: Colors.transparent,
             ),
-            initialRoute: 'home',
+            initialRoute: 'splash',
             routes: {
+              "splash": (BuildContext context) => const Splash(),
               "home": (BuildContext context) => const HomePage(),
             },
           ),

@@ -16,6 +16,8 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
   Widget build(BuildContext context) {
     final provider = Provider.of<ControllerLanguage>(context, listen: false);
     final inicioBloc = ProviderBloc.inicio(context);
+    final categoriasBloc = ProviderBloc.categorias(context);
+    final negociosBloc = ProviderBloc.negocio(context);
     return ValueListenableBuilder(
       valueListenable: provider.activate,
       builder: (BuildContext context, int data, Widget? child) {
@@ -23,6 +25,8 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
             onSelected: (int value) {
               provider.setActivate(value);
               inicioBloc.updateLanguage(value.toString());
+              categoriasBloc.updateLanguage(value.toString());
+              negociosBloc.updateLanguage(value.toString());
             },
             icon: SizedBox(
               height: ScreenUtil().setHeight(48),

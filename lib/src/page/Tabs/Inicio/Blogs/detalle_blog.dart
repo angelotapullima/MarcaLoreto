@@ -111,8 +111,18 @@ class DetalleBlog extends StatelessWidget {
                 ),
               );
             } else {
-              return const Center(
-                child: Text('Sin información disponible'),
+              return ValueListenableBuilder(
+                valueListenable: provider.activate,
+                builder: (BuildContext context, int data, Widget? child) {
+                  return Center(
+                    child: Text(
+                      (provider.activateS.value == 1) ? 'Oops sorry, no information' : 'Sin información disponible',
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  );
+                },
               );
             }
           } else {

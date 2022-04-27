@@ -32,7 +32,7 @@ class DetalleExperiencia extends StatelessWidget {
                                   width: ScreenUtil().setWidth(16),
                                 ),
                                 Text(
-                                  '${detalle.subtituloDetalleCategoria}',
+                                  (detalle.activarEnglish == '1') ? '${detalle.subtitleDetalleCategoriaEn}' : '${detalle.subtituloDetalleCategoria}',
                                   style: TextStyle(
                                     fontSize: ScreenUtil().setSp(20),
                                     fontWeight: FontWeight.w700,
@@ -48,7 +48,7 @@ class DetalleExperiencia extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                               child: Text(
-                                '${detalle.detalleCategoriaDetalle}',
+                                (detalle.activarEnglish == '1') ? '${detalle.detailCategoriaDetalleEn}' : '${detalle.detalleCategoriaDetalle}',
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: ScreenUtil().setSp(14),

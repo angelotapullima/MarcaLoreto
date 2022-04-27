@@ -34,9 +34,9 @@ class DetalleDescubre extends StatelessWidget {
                 ),
               );
             }),
-        actions: const [
-          ChangeLanguage(),
-        ],
+        // actions: const [
+        //   ChangeLanguage(),
+        // ],
       ),
       body: StreamBuilder(
         stream: detalleBloc.detalleDesStream,
@@ -57,7 +57,7 @@ class DetalleDescubre extends StatelessWidget {
                           width: ScreenUtil().setWidth(16),
                         ),
                         Text(
-                          '${categoria.nombreCategoria}',
+                          (categoria.activarEnglish == '1') ? '${categoria.nameCategoriaEn}' : '${categoria.nombreCategoria}',
                           style: TextStyle(
                             fontSize: ScreenUtil().setSp(20),
                             fontWeight: FontWeight.w700,
@@ -94,7 +94,7 @@ class DetalleDescubre extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                       child: Text(
-                        '${detalle.subtituloDetalleCategoria}',
+                        (detalle.activarEnglish == '1') ? '${detalle.subtitleDetalleCategoriaEn}' : '${detalle.subtituloDetalleCategoria}',
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(16),
                           fontWeight: FontWeight.w700,
@@ -107,7 +107,7 @@ class DetalleDescubre extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                       child: Text(
-                        '${detalle.detalleCategoriaDetalle}',
+                        (detalle.activarEnglish == '1') ? '${detalle.detailCategoriaDetalleEn}' : '${detalle.detalleCategoriaDetalle}',
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(16),
                           fontWeight: FontWeight.w400,
@@ -118,8 +118,18 @@ class DetalleDescubre extends StatelessWidget {
                 ),
               );
             } else {
-              return const Center(
-                child: Text('Sin información disponible'),
+              return ValueListenableBuilder(
+                valueListenable: provider.activate,
+                builder: (BuildContext context, int data, Widget? child) {
+                  return Center(
+                    child: Text(
+                      (provider.activateS.value == 1) ? 'Oops sorry, no information' : 'Sin información disponible',
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  );
+                },
               );
             }
           } else {

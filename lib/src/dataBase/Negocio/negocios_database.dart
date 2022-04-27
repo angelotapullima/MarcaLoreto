@@ -44,4 +44,18 @@ class NegociosDatabase {
       return [];
     }
   }
+
+  //Language
+
+  updateLanguage(String value) async {
+    try {
+      final db = await dbprovider.database;
+
+      final res = await db.rawUpdate("UPDATE Negocio SET activarEnglish='$value'");
+
+      return res;
+    } catch (exception) {
+      return exception;
+    }
+  }
 }

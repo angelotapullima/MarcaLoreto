@@ -95,7 +95,7 @@ class Negocios extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(5)),
                             child: Text(
-                              '${negocio.nombreCategoria}',
+                              (negocio.activarEnglish == '1') ? '${negocio.nameCategoriaEn}' : '${negocio.nombreCategoria}',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: Colors.grey,

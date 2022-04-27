@@ -34,7 +34,7 @@ class _BannersState extends State<Banners> {
                   return Stack(
                     children: [
                       CachedNetworkImage(
-                        placeholder: (context, url) => const CupertinoActivityIndicator(),
+                        placeholder: (context, url) => const Center(child: CupertinoActivityIndicator()),
                         errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
                         imageUrl: '$apiBaseURL/${banner.imageBanner}',
                         imageBuilder: (context, imageProvider) => Container(
@@ -90,7 +90,7 @@ class _BannersState extends State<Banners> {
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                   child: Text(
-                                    (banner.activarEnglish == '1') ? 'See more' : 'Ver más',
+                                    (banner.activarEnglish == '1') ? 'See more' : 'See more',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: ScreenUtil().setSp(16),

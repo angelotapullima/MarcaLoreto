@@ -31,4 +31,31 @@ class CategoriaDatabase {
       return [];
     }
   }
+
+  //Language
+
+  Future<List<CategoriaModel>> getCategoriaByIdCategoria(String idCategoria) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      List<CategoriaModel> list = [];
+      List<Map> maps = await db.rawQuery("SELECT * FROM Categoria WHERE idCategoria='$idCategoria' ");
+
+      if (maps.isNotEmpty) list = CategoriaModel.fromJsonList(maps);
+      return list;
+    } catch (e) {
+      return [];
+    }
+  }
+
+  updateLanguage(String value) async {
+    try {
+      final db = await dbprovider.database;
+
+      final res = await db.rawUpdate("UPDATE Categoria SET activarEnglish='$value'");
+
+      return res;
+    } catch (exception) {
+      return exception;
+    }
+  }
 }

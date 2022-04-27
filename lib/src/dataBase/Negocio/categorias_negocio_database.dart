@@ -44,4 +44,30 @@ class CategoriasNegocioDatabase {
       return [];
     }
   }
+
+  //Language
+  Future<List<CategoriasNegocioModel>> getCategoriaNegocioByIdCategory(String idCategoriaNeg) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      List<CategoriasNegocioModel> list = [];
+      List<Map> maps = await db.rawQuery("SELECT * FROM CategoriasNegocio WHERE idCategoriaNeg='$idCategoriaNeg'");
+
+      if (maps.isNotEmpty) list = CategoriasNegocioModel.fromJsonList(maps);
+      return list;
+    } catch (e) {
+      return [];
+    }
+  }
+
+  updateLanguage(String value) async {
+    try {
+      final db = await dbprovider.database;
+
+      final res = await db.rawUpdate("UPDATE CategoriasNegocio SET activarEnglish='$value'");
+
+      return res;
+    } catch (exception) {
+      return exception;
+    }
+  }
 }

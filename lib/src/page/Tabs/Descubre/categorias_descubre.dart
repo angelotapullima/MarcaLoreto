@@ -28,7 +28,9 @@ class CategoriaDescubreText extends StatelessWidget {
                       vertical: ScreenUtil().setHeight(30),
                     ),
                     child: Text(
-                      'Elige y dale tap a uno de los botones y descúbre.',
+                      (snapshot.data![0].activarEnglish == '1')
+                          ? 'Tap one of the buttons and discover'
+                          : 'Elige y dale tap a uno de los botones y descúbre.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.grey,
@@ -149,7 +151,7 @@ class CategoriasDescubre extends StatelessWidget {
                               Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  '${category.nombreCategoria}',
+                                  (category.activarEnglish == '1') ? '${category.nameCategoriaEn}' : '${category.nombreCategoria}',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: ScreenUtil().setSp(14),

@@ -4,6 +4,7 @@ class NegocioModel {
   String? nombreNegocio;
   String? imageNegocio;
   String? detalleNegocio;
+  String? detailNegocioEn;
   String? urlNegocio;
   String? facebookNegocio;
   String? catalogoNegocio;
@@ -13,6 +14,7 @@ class NegocioModel {
 
   //No en base de datos
   String? nombreCategoria;
+  String? nameCategoriaEn;
 
   NegocioModel({
     this.idNegocio,
@@ -20,12 +22,14 @@ class NegocioModel {
     this.nombreNegocio,
     this.imageNegocio,
     this.detalleNegocio,
+    this.detailNegocioEn,
     this.urlNegocio,
     this.facebookNegocio,
     this.catalogoNegocio,
     this.dateTimeNegocio,
     this.estadoNegocio,
     this.nombreCategoria,
+    this.nameCategoriaEn,
     this.activarEnglish,
   });
 
@@ -35,6 +39,7 @@ class NegocioModel {
         'nombreNegocio': nombreNegocio,
         'imageNegocio': imageNegocio,
         'detalleNegocio': detalleNegocio,
+        'detailNegocioEn': detailNegocioEn,
         'urlNegocio': urlNegocio,
         'facebookNegocio': facebookNegocio,
         'catalogoNegocio': catalogoNegocio,
@@ -51,6 +56,7 @@ class NegocioModel {
         nombreNegocio: json["nombreNegocio"],
         imageNegocio: json["imageNegocio"],
         detalleNegocio: json["detalleNegocio"],
+        detailNegocioEn: json["detailNegocioEn"],
         urlNegocio: json["urlNegocio"],
         facebookNegocio: json["facebookNegocio"],
         catalogoNegocio: json["catalogoNegocio"],

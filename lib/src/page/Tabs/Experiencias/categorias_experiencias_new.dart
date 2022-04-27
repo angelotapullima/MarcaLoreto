@@ -25,7 +25,6 @@ class _CategoriasExperienciasNewState extends State<CategoriasExperienciasNew> {
             if (_controller.index == 0) {
               categoriasExpBloc.getDetalleExperiencia(snapshot.data![0].idCategoria.toString());
             }
-
             return Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: ScreenUtil().setWidth(16),
@@ -41,6 +40,8 @@ class _CategoriasExperienciasNewState extends State<CategoriasExperienciasNew> {
                           itemCount: snapshot.data!.length,
                           itemBuilder: (_, i) {
                             var category = snapshot.data![i];
+                            // if (provider.activateS.value == 1) {}
+                            // categoriasExpBloc.getDetalleExperiencia(category.idCategoria.toString());
                             return InkWell(
                               onTap: () {
                                 _controller.changeIndex(i);
@@ -58,7 +59,7 @@ class _CategoriasExperienciasNewState extends State<CategoriasExperienciasNew> {
                                   border: Border.all(color: const Color(0XFFF9B233)),
                                 ),
                                 child: Text(
-                                  '${category.nombreCategoria}',
+                                  (category.activarEnglish == '1') ? '${category.nameCategoriaEn}' : '${category.nombreCategoria}',
                                   style: TextStyle(
                                     color: (_controller.index == i) ? Colors.white : const Color(0XFFF9B233),
                                     fontSize: ScreenUtil().setSp(16),

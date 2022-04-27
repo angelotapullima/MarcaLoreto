@@ -57,9 +57,9 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                         ),
                       );
                     }),
-                actions: const [
-                  ChangeLanguage(),
-                ],
+                // actions: const [
+                //   ChangeLanguage(),
+                // ],
               ),
               floatingActionButton: (detalle.urlNegocio != null || detalle.facebookNegocio != null || detalle.catalogoNegocio != null)
                   ? SpeedDial(
@@ -77,7 +77,7 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                                   Icons.download,
                                   color: Colors.white,
                                 ),
-                                label: 'Descargar catálogo')
+                                label: (detalle.activarEnglish == '1') ? 'Download catalog' : 'Descargar catálogo')
                             : SpeedDialChild(),
                         (detalle.urlNegocio != null)
                             ? SpeedDialChild(
@@ -110,7 +110,7 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                                   // );
                                 },
                                 child: const Icon(Icons.web_outlined),
-                                label: 'Visitar página Web',
+                                label: (detalle.activarEnglish == '1') ? 'Visit website' : 'Visitar página Web',
                               )
                             : SpeedDialChild(),
                         (detalle.facebookNegocio != null)
@@ -170,7 +170,7 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                           child: Text(
-                            '${detalle.detalleNegocio}',
+                            (detalle.activarEnglish == '1') ? '${detalle.detailNegocioEn}' : '${detalle.detalleNegocio}',
                             style: TextStyle(
                               fontSize: ScreenUtil().setSp(16),
                               fontWeight: FontWeight.w400,
@@ -196,10 +196,10 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                                       vertical: ScreenUtil().setHeight(20),
                                     ),
                                     decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(10)),
-                                    child: const Center(
+                                    child: Center(
                                       child: Text(
-                                        'Descarga  completa',
-                                        style: TextStyle(color: Colors.white),
+                                        (detalle.activarEnglish == '1') ? 'Full download' : 'Descarga completa',
+                                        style: const TextStyle(color: Colors.white),
                                       ),
                                     ))
                                 : Padding(
@@ -208,7 +208,7 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                                       height: ScreenUtil().setHeight(40),
                                       child: Column(
                                         children: [
-                                          Text('Descargando $data%'),
+                                          Text((detalle.activarEnglish == '1') ? 'Downloading $data%' : 'Descargando $data%'),
                                           LinearPercentIndicator(
                                             width: ScreenUtil().setWidth(100),
                                             lineHeight: 14.0,
@@ -246,8 +246,18 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                   ChangeLanguage(),
                 ],
               ),
-              body: const Center(
-                child: Text('Sin información disponible'),
+              body: ValueListenableBuilder(
+                valueListenable: provider.activate,
+                builder: (BuildContext context, int data, Widget? child) {
+                  return Center(
+                    child: Text(
+                      (provider.activateS.value == 1) ? 'Oops sorry, no information' : 'Sin información disponible',
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  );
+                },
               ),
             );
           }

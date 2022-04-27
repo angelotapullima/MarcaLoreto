@@ -16,7 +16,7 @@ class _CategoriasNegocioState extends State<CategoriasNegocio> {
   @override
   Widget build(BuildContext context) {
     final categoriasNegBloc = ProviderBloc.negocio(context);
-    categoriasNegBloc.getCategoiesNegocios();
+    categoriasNegBloc.getCategoriesNegocios();
     return StreamBuilder(
       stream: categoriasNegBloc.categoriasNegocioStream,
       builder: (context, AsyncSnapshot<List<CategoriasNegocioModel>> snapshot) {
@@ -58,7 +58,7 @@ class _CategoriasNegocioState extends State<CategoriasNegocio> {
                                   border: Border.all(color: const Color(0XFFF9B233)),
                                 ),
                                 child: Text(
-                                  '${category.nombreCategoriaNeg}',
+                                  (category.activarEnglish == '1') ? '${category.nameCategoriaNegEn}' : '${category.nombreCategoriaNeg}',
                                   style: TextStyle(
                                     color: (_controller.index == i) ? Colors.white : const Color(0XFFF9B233),
                                     fontSize: ScreenUtil().setSp(16),

@@ -53,4 +53,12 @@ class CategoriasBloc {
     await _tabsApi.listarInicio();
     _detalleExperienciaController.sink.add(await _tabsApi.detailDesDB.getDetalleByIdCategoria(idCategoriaExperiencia));
   }
+
+  void updateLanguage(String value) async {
+    await _tabsApi.categoryDesDB.updateLanguage(value);
+    await _tabsApi.detailDesDB.updateLanguage(value);
+
+    getCategoriesDescubre();
+    getCategoriesExpreriencias();
+  }
 }

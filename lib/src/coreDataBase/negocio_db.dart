@@ -2,6 +2,7 @@ class NegocioDB {
   static const String tableCategoriasNegocioSql = 'CREATE TABLE CategoriasNegocio('
       ' idCategoriaNeg TEXT PRIMARY KEY,'
       ' nombreCategoriaNeg TEXT,'
+      ' nameCategoriaNegEn TEXT,'
       ' activarEnglish TEXT,'
       ' estadoCategoriaNeg TEXT)';
 
@@ -11,6 +12,7 @@ class NegocioDB {
       ' nombreNegocio TEXT,'
       ' imageNegocio TEXT,'
       ' detalleNegocio TEXT,'
+      ' detailNegocioEn TEXT,'
       ' urlNegocio TEXT,'
       ' facebookNegocio TEXT,'
       ' catalogoNegocio TEXT,'

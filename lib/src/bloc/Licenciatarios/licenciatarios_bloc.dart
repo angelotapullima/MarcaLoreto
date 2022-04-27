@@ -21,7 +21,7 @@ class LicenciatariosBloc {
     _negocioController.close();
   }
 
-  void getCategoiesNegocios() async {
+  void getCategoriesNegocios() async {
     _categoriasNegocioController.sink.add(await _api.cateryNegociosDB.getCategoriasNegocio());
     await _api.listarInicio();
     _categoriasNegocioController.sink.add(await _api.cateryNegociosDB.getCategoriasNegocio());
@@ -54,16 +54,19 @@ class LicenciatariosBloc {
       negocio.nombreNegocio = _listaNegocios[i].nombreNegocio;
       negocio.imageNegocio = _listaNegocios[i].imageNegocio;
       negocio.detalleNegocio = _listaNegocios[i].detalleNegocio;
+      negocio.detailNegocioEn = _listaNegocios[i].detailNegocioEn;
       negocio.urlNegocio = _listaNegocios[i].urlNegocio;
       negocio.facebookNegocio = _listaNegocios[i].facebookNegocio;
       negocio.catalogoNegocio = _listaNegocios[i].catalogoNegocio;
       negocio.dateTimeNegocio = _listaNegocios[i].dateTimeNegocio;
       negocio.estadoNegocio = _listaNegocios[i].estadoNegocio;
+      negocio.activarEnglish = _listaNegocios[i].activarEnglish;
 
       final _categoria = await _api.cateryNegociosDB.getCategoriaNegocioById(idCategoriaNeg);
 
       if (_categoria.isNotEmpty) {
         negocio.nombreCategoria = _categoria[0].nombreCategoriaNeg;
+        negocio.nameCategoriaEn = _categoria[0].nameCategoriaNegEn;
       } else {
         negocio.nombreCategoria = '';
       }
@@ -74,5 +77,12 @@ class LicenciatariosBloc {
     }
 
     return result;
+  }
+
+  void updateLanguage(String value) async {
+    await _api.cateryNegociosDB.updateLanguage(value);
+    await _api.negocioDB.updateLanguage(value);
+
+    getCategoriesNegocios();
   }
 }
