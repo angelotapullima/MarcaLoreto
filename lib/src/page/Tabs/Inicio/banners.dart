@@ -76,33 +76,33 @@ class _BannersState extends State<Banners> {
                             SizedBox(
                               height: ScreenUtil().setHeight(30),
                             ),
-                            Center(
-                              child: InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  height: ScreenUtil().setHeight(48),
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: ScreenUtil().setWidth(30),
-                                    vertical: ScreenUtil().setHeight(14),
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0XFFF9B233),
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: Text(
-                                    (banner.activarEnglish == '1') ? 'See more' : 'See more',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: ScreenUtil().setSp(16),
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: ScreenUtil().setHeight(20),
-                            ),
+                            // Center(
+                            //   child: InkWell(
+                            //     onTap: () {},
+                            //     child: Container(
+                            //       height: ScreenUtil().setHeight(48),
+                            //       padding: EdgeInsets.symmetric(
+                            //         horizontal: ScreenUtil().setWidth(30),
+                            //         vertical: ScreenUtil().setHeight(14),
+                            //       ),
+                            //       decoration: BoxDecoration(
+                            //         color: const Color(0XFFF9B233),
+                            //         borderRadius: BorderRadius.circular(50),
+                            //       ),
+                            //       child: Text(
+                            //         (banner.activarEnglish == '1') ? 'See more' : 'Ver más',
+                            //         style: TextStyle(
+                            //           color: Colors.white,
+                            //           fontSize: ScreenUtil().setSp(16),
+                            //           fontWeight: FontWeight.w600,
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+                            // SizedBox(
+                            //   height: ScreenUtil().setHeight(20),
+                            // ),
                             AnimatedBuilder(
                                 animation: _controlller,
                                 builder: (_, r) {

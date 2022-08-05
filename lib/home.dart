@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
+import 'package:marca_loreto/src/page/Actions/form_action.dart';
 import 'package:marca_loreto/src/page/Tabs/Descubre/descubre.dart';
 import 'package:marca_loreto/src/page/Tabs/Experiencias/experiencias_con_appbar.dart';
 import 'package:marca_loreto/src/page/Tabs/Inicio/inicio.dart';
@@ -52,6 +53,58 @@ class _HomePageState extends State<HomePage> {
                     children: pageList,
                   ),
                 ),
+                (bottomBloc.page == 0)
+                    ? Positioned(
+                        bottom: ScreenUtil().setHeight(80),
+                        right: ScreenUtil().setWidth(16),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                opaque: false,
+                                pageBuilder: (context, animation, secondaryAnimation) {
+                                  return FormAction();
+                                },
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  var begin = const Offset(0.0, 1.0);
+                                  var end = Offset.zero;
+                                  var curve = Curves.ease;
+
+                                  var tween = Tween(begin: begin, end: end).chain(
+                                    CurveTween(curve: curve),
+                                  );
+
+                                  return SlideTransition(
+                                    position: animation.drive(tween),
+                                    child: child,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.orangeAccent,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.transparent.withOpacity(0.4),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Icon(
+                              Icons.question_mark,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
                 Positioned(
                   // bottom: responsive.hp(2),
                   // left: responsive.wp(3),
@@ -71,217 +124,136 @@ class _HomePageState extends State<HomePage> {
                       //borderRadius: BorderRadius.circular(30),
                     ),
                     child: ValueListenableBuilder(
-                        valueListenable: provider.activate,
-                        builder: (BuildContext context, int data, Widget? child) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  bottomBloc.changePage(0);
-                                },
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: responsive.ip(2.5),
-                                      width: responsive.ip(2.5),
-                                      child: (bottomBloc.page == 0)
-                                          ? SvgPicture.asset(
-                                              'assets/svg/tabs/Inicio.svg',
-                                              color: const Color(0xFF008d36),
-                                            )
-                                          : SvgPicture.asset(
-                                              'assets/svg/tabs/Inicio.svg',
-                                              color: Colors.grey,
-                                            ),
+                      valueListenable: provider.activate,
+                      builder: (BuildContext context, int data, Widget? child) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                bottomBloc.changePage(0);
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: responsive.ip(2.5),
+                                    width: responsive.ip(2.5),
+                                    child: (bottomBloc.page == 0)
+                                        ? SvgPicture.asset(
+                                            'assets/svg/tabs/home.svg',
+                                            color: const Color(0xFF008d36),
+                                          )
+                                        : SvgPicture.asset(
+                                            'assets/svg/tabs/home.svg',
+                                            color: Colors.grey,
+                                          ),
+                                  ),
+                                  Text(
+                                    (provider.activateS.value == 1) ? '    Home   ' : '    Inicio    ',
+                                    style: TextStyle(
+                                      color: (bottomBloc.page == 0) ? const Color(0xFF008d36) : Colors.black,
+                                      fontSize: ScreenUtil().setSp(11),
                                     ),
-                                    Text(
-                                      (provider.activateS.value == 1) ? '    Home   ' : '    Inicio    ',
-                                      style: TextStyle(
-                                        color: (bottomBloc.page == 0) ? const Color(0xFF008d36) : Colors.black,
-                                        fontSize: ScreenUtil().setSp(11),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
-                              InkWell(
-                                onTap: () {
-                                  bottomBloc.changePage(1);
-                                },
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: responsive.ip(2.5),
-                                      width: responsive.ip(2.5),
-                                      child: (bottomBloc.page == 1)
-                                          ? SvgPicture.asset(
-                                              'assets/svg/tabs/gol.svg',
-                                              color: const Color(0xFF008d36),
-                                            )
-                                          : SvgPicture.asset(
-                                              'assets/svg/tabs/gol.svg',
-                                              color: Colors.grey,
-                                            ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                bottomBloc.changePage(1);
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: responsive.ip(2.5),
+                                    width: responsive.ip(2.5),
+                                    child: (bottomBloc.page == 1)
+                                        ? SvgPicture.asset(
+                                            'assets/svg/tabs/binoculars.svg',
+                                            color: const Color(0xFF008d36),
+                                          )
+                                        : SvgPicture.asset(
+                                            'assets/svg/tabs/binoculars.svg',
+                                            color: Colors.grey,
+                                          ),
+                                  ),
+                                  Text(
+                                    (provider.activateS.value == 1) ? '  Discover ' : '   Descubre   ',
+                                    style: TextStyle(
+                                      color: (bottomBloc.page == 1) ? const Color(0xFF008d36) : Colors.black,
+                                      fontSize: ScreenUtil().setSp(11),
                                     ),
-                                    Text(
-                                      (provider.activateS.value == 1) ? '  Discover ' : '   Descubre   ',
-                                      style: TextStyle(
-                                        color: (bottomBloc.page == 1) ? const Color(0xFF008d36) : Colors.black,
-                                        fontSize: ScreenUtil().setSp(11),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
-                              InkWell(
-                                onTap: () {
-                                  bottomBloc.changePage(2);
-                                },
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: responsive.ip(2.5),
-                                      width: responsive.ip(2.5),
-                                      child: (bottomBloc.page == 2)
-                                          ? SvgPicture.asset(
-                                              'assets/svg/tabs/gol.svg',
-                                              color: const Color(0xFF008d36),
-                                            )
-                                          : SvgPicture.asset(
-                                              'assets/svg/tabs/gol.svg',
-                                              color: Colors.grey,
-                                            ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                bottomBloc.changePage(2);
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: responsive.ip(2.5),
+                                    width: responsive.ip(2.5),
+                                    child: (bottomBloc.page == 2)
+                                        ? SvgPicture.asset(
+                                            'assets/svg/tabs/puma.svg',
+                                            color: const Color(0xFF008d36),
+                                          )
+                                        : SvgPicture.asset(
+                                            'assets/svg/tabs/puma.svg',
+                                            color: Colors.grey,
+                                          ),
+                                  ),
+                                  Text(
+                                    (provider.activateS.value == 1) ? 'Experiences' : ' Experiencias ',
+                                    style: TextStyle(
+                                      color: (bottomBloc.page == 2) ? const Color(0xFF008d36) : Colors.black,
+                                      fontSize: ScreenUtil().setSp(11),
                                     ),
-                                    Text(
-                                      (provider.activateS.value == 1) ? 'Experiences' : ' Experiencias ',
-                                      style: TextStyle(
-                                        color: (bottomBloc.page == 2) ? const Color(0xFF008d36) : Colors.black,
-                                        fontSize: ScreenUtil().setSp(11),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
-                              InkWell(
-                                onTap: () {
-                                  bottomBloc.changePage(3);
-                                },
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: responsive.ip(2.5),
-                                      width: responsive.ip(2.5),
-                                      child: (bottomBloc.page == 3)
-                                          ? SvgPicture.asset(
-                                              'assets/svg/tabs/gol.svg',
-                                              color: const Color(0xFF008d36),
-                                            )
-                                          : SvgPicture.asset(
-                                              'assets/svg/tabs/gol.svg',
-                                              color: Colors.grey,
-                                            ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                bottomBloc.changePage(3);
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: responsive.ip(2.5),
+                                    width: responsive.ip(2.5),
+                                    child: (bottomBloc.page == 3)
+                                        ? SvgPicture.asset(
+                                            'assets/svg/tabs/ceram.svg',
+                                            color: const Color(0xFF008d36),
+                                          )
+                                        : SvgPicture.asset(
+                                            'assets/svg/tabs/ceram.svg',
+                                            color: Colors.grey,
+                                          ),
+                                  ),
+                                  Text(
+                                    (provider.activateS.value == 1) ? ' Licensees ' : 'Licenciatarios',
+                                    style: TextStyle(
+                                      color: (bottomBloc.page == 3) ? const Color(0xFF008d36) : Colors.black,
+                                      fontSize: ScreenUtil().setSp(11),
                                     ),
-                                    Text(
-                                      (provider.activateS.value == 1) ? ' Licensees ' : 'Licenciatarios',
-                                      style: TextStyle(
-                                        color: (bottomBloc.page == 3) ? const Color(0xFF008d36) : Colors.black,
-                                        fontSize: ScreenUtil().setSp(11),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
-
-                              // InkWell(
-                              //   onTap: () {
-                              //     bottomBloc.changePage(2);
-                              //   },
-                              //   child: Column(
-                              //     mainAxisAlignment: MainAxisAlignment.center,
-                              //     children: [
-                              //       SizedBox(
-                              //         height: responsive.ip(3.5),
-                              //         width: responsive.ip(3.5),
-                              //         child: (bottomBloc.page == 2)
-                              //             ? SvgPicture.asset(
-                              //                 'assets/svg/tabs/Experiencias.svg',
-                              //                 color: Colors.grey,
-                              //               )
-                              //             : SvgPicture.asset(
-                              //                 'assets/svg/tabs/Experiencias.svg',
-                              //                 color: Colors.blue,
-                              //               ), //Image.asset('assets/logo_largo.svg'),
-                              //       ),
-                              //       CircleAvatar(
-                              //         backgroundColor: (bottomBloc.page == 2) ? Colors.grey : Colors.blue,
-                              //         radius: 2.5,
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
-                              // InkWell(
-                              //   onTap: () {
-                              //     bottomBloc.changePage(3);
-                              //   },
-                              //   child: Column(
-                              //     mainAxisAlignment: MainAxisAlignment.center,
-                              //     children: [
-                              //       SizedBox(
-                              //         height: responsive.ip(3.5),
-                              //         width: responsive.ip(3.5),
-                              //         child: (bottomBloc.page == 3)
-                              //             ? SvgPicture.asset(
-                              //                 'assets/svg/tabs/Productos.svg',
-                              //                 color: Colors.grey,
-                              //               )
-                              //             : SvgPicture.asset(
-                              //                 'assets/svg/tabs/Productos.svg',
-                              //                 color: Colors.blue,
-                              //               ), //Image'assets/logo_largo.svg'),
-                              //       ),
-                              //       CircleAvatar(
-                              //         backgroundColor: (bottomBloc.page == 3) ? Colors.grey : Colors.blue,
-                              //         radius: 2.5,
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
-                              // InkWell(
-                              //   onTap: () {
-                              //     bottomBloc.changePage(4);
-                              //   },
-                              //   child: Column(
-                              //     mainAxisAlignment: MainAxisAlignment.center,
-                              //     children: [
-                              //       SizedBox(
-                              //         height: responsive.ip(3.5),
-                              //         width: responsive.ip(3.5),
-                              //         child: (bottomBloc.page == 4)
-                              //             ? SvgPicture.asset(
-                              //                 'assets/svg/tabs/Vivencias.svg',
-                              //                 color: Colors.grey,
-                              //               )
-                              //             : SvgPicture.asset(
-                              //                 'assets/svg/tabs/Vivencias.svg',
-                              //                 color: Colors.blue,
-                              //               ), //Image'assets/logo_largo.svg'),
-                              //       ),
-                              //       CircleAvatar(
-                              //         backgroundColor: (bottomBloc.page == 4) ? Colors.grey : Colors.blue,
-                              //         radius: 2.5,
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
-                            ],
-                          );
-                        }),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],
