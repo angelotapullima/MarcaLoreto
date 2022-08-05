@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:marca_loreto/src/dataBase/Inicio/archivos_database.dart';
 import 'package:marca_loreto/src/dataBase/Inicio/banner_database.dart';
 import 'package:marca_loreto/src/dataBase/Inicio/blog_database.dart';
 import 'package:marca_loreto/src/dataBase/Inicio/galeria_database.dart';
 import 'package:marca_loreto/src/dataBase/Inicio/seccion_database.dart';
+import 'package:marca_loreto/src/model/inicio/archivos_model.dart';
 import 'package:marca_loreto/src/model/inicio/banner_model.dart';
 import 'package:marca_loreto/src/model/inicio/blog_model.dart';
 import 'package:marca_loreto/src/model/inicio/galeria_model.dart';
@@ -14,6 +16,7 @@ import 'package:http/http.dart' as http;
 class InicioApi {
   final bannerDB = BannerDatabase();
   final seccionDB = SeccionDatabase();
+  final archivoDB = ArchivosDatabase();
   final blogDB = BlogDatabase();
   final galeriaDB = GaleriaDatabase();
   Future<bool> listarInicio() async {
@@ -71,6 +74,26 @@ class InicioApi {
       }
 
       await seccionDB.insertSeccion(seccionModel);
+
+      //Almacenar Archivos
+      for (var i = 0; i < decodedData["archivos"].length; i++) {
+        var data = decodedData["archivos"][i];
+        ArchivosModel archivoModel = ArchivosModel();
+        archivoModel.idArchivo = data["id_archivo"];
+        archivoModel.nombreArchivo = data["archivo_nombre"];
+        archivoModel.nombreArchivoEn = data["archivo_nombre_en"];
+        archivoModel.linkArchivo = data["archivo_link"];
+        archivoModel.estadoArchivo = data["archivo_estado"];
+
+        final language = await archivoDB.getArchivoById(archivoModel.idArchivo.toString());
+        if (language.isNotEmpty) {
+          archivoModel.activarEnglish = language[0].activarEnglish;
+        } else {
+          archivoModel.activarEnglish = '0';
+        }
+
+        await archivoDB.insertArchivo(archivoModel);
+      }
 
       //Almacenar Datos de Blog
       for (var i = 0; i < decodedData["blogs"].length; i++) {

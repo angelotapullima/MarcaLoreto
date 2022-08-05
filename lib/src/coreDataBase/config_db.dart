@@ -17,6 +17,7 @@ class DatabaseHelper {
       //Inicio
       db.execute(InicioDB.tableBannerSql);
       db.execute(InicioDB.tableSeccionSql);
+      db.execute(InicioDB.tableArchivosSql);
       db.execute(InicioDB.tableBlogsSql);
       db.execute(InicioDB.tableGaleriaSql);
 

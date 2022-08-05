@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marca_loreto/src/api/Form%20Action/form_action_api.dart';
 import 'package:marca_loreto/src/utils/utils.dart';
 
 class FormAction extends StatefulWidget {
@@ -133,9 +134,19 @@ class _FormActionState extends State<FormAction> {
                     ),
                     SizedBox(height: ScreenUtil().setHeight(10)),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (_nombreController.value.text.isNotEmpty) {
                           if (_emailController.value.text.isNotEmpty) {
+                            _controller.changeCargando(true);
+                            final _api = FormActionApi();
+                            final res = await _api.sendDatos(_nombreController.value.text.trim(), _emailController.value.text.trim());
+                            if (res == 1) {
+                              showToast2('Datos enviados correctamente', Colors.green);
+                              Navigator.pop(context);
+                            } else {
+                              showToast2('Ocurrió un error, inténtelo nuevamente', Colors.redAccent);
+                            }
+                            _controller.changeCargando(false);
                           } else {
                             showToast2('Email requerido', Colors.redAccent);
                           }
@@ -313,7 +324,10 @@ class _FormActionState extends State<FormAction> {
           AnimatedBuilder(
             animation: _controller,
             builder: (_, p) {
-              return (_controller.cargando) ? CupertinoActivityIndicator() : Container();
+              return (_controller.cargando)
+                  ? Container(
+                      height: double.infinity, width: double.infinity, color: Colors.black.withOpacity(0.3), child: CupertinoActivityIndicator())
+                  : Container();
             },
           ),
         ],

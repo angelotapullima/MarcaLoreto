@@ -1,4 +1,6 @@
 import 'package:marca_loreto/src/api/inicio/inicio_api.dart';
+import 'package:marca_loreto/src/dataBase/Inicio/archivos_database.dart';
+import 'package:marca_loreto/src/model/inicio/archivos_model.dart';
 import 'package:marca_loreto/src/model/inicio/banner_model.dart';
 import 'package:marca_loreto/src/model/inicio/blog_model.dart';
 import 'package:marca_loreto/src/model/inicio/galeria_model.dart';
@@ -7,12 +9,16 @@ import 'package:rxdart/rxdart.dart';
 
 class InicioBloc {
   final _inicioApi = InicioApi();
+  final archivoDB = ArchivosDatabase();
 
   final _bannerController = BehaviorSubject<List<BannerModel>>();
   Stream<List<BannerModel>> get bannerStream => _bannerController.stream;
 
   final _seccionController = BehaviorSubject<List<SeccionModel>>();
   Stream<List<SeccionModel>> get seccionStream => _seccionController.stream;
+
+  final _archivosController = BehaviorSubject<List<ArchivosModel>>();
+  Stream<List<ArchivosModel>> get archivosStream => _archivosController.stream;
 
   final _blogController = BehaviorSubject<List<BlogModel>>();
   Stream<List<BlogModel>> get blogStream => _blogController.stream;
@@ -29,16 +35,19 @@ class InicioBloc {
     _blogController.close();
     _galeriaController.close();
     _blogByIdController.close();
+    _archivosController.close();
   }
 
   void getInicio() async {
     _bannerController.sink.add(await _inicioApi.bannerDB.getBanners());
     _seccionController.sink.add(await _inicioApi.seccionDB.getSeccions());
+    _archivosController.sink.add(await archivoDB.getArchivos());
     _blogController.sink.add(await _inicioApi.blogDB.getBlogs());
     _galeriaController.sink.add(await _inicioApi.galeriaDB.getGaleria());
     await _inicioApi.listarInicio();
     _bannerController.sink.add(await _inicioApi.bannerDB.getBanners());
     _seccionController.sink.add(await _inicioApi.seccionDB.getSeccions());
+    _archivosController.sink.add(await archivoDB.getArchivos());
     _blogController.sink.add(await _inicioApi.blogDB.getBlogs());
     _galeriaController.sink.add(await _inicioApi.galeriaDB.getGaleria());
   }
@@ -55,6 +64,7 @@ class InicioBloc {
     await _inicioApi.seccionDB.updateLanguage(value);
     await _inicioApi.blogDB.updateLanguage(value);
     await _inicioApi.galeriaDB.updateLanguage(value);
+    await archivoDB.updateLanguage(value);
 
     getInicio();
   }

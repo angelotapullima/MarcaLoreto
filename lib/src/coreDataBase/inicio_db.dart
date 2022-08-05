@@ -48,4 +48,12 @@ class InicioDB {
       ' linkGaleria TEXT,'
       ' estadoGaleria TEXT,'
       ' activarEnglish TEXT)';
+
+  static const String tableArchivosSql = 'CREATE TABLE Archivos('
+      ' idArchivo TEXT PRIMARY KEY,'
+      ' nombreArchivo TEXT,'
+      ' nombreArchivoEn TEXT,'
+      ' linkArchivo TEXT,'
+      ' estadoArchivo TEXT,'
+      ' activarEnglish TEXT)';
 }

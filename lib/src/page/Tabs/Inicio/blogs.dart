@@ -161,6 +161,7 @@ class Blogs extends StatelessWidget {
                                           padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(4)),
                                           child: Text(
                                             (blog.activarEnglish == '1') ? '${blog.subtitleBlogEn}' : '${blog.subtituloBlog}',
+                                            maxLines: 6,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: ScreenUtil().setSp(10),
