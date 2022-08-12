@@ -30,14 +30,17 @@ class MyApp extends StatelessWidget {
         child: ScreenUtilInit(
           minTextAdapt: true,
           designSize: const Size(375, 812),
-          builder: () => MaterialApp(
+          builder: (BuildContext context, c) => MaterialApp(
             title: 'Loreto',
             debugShowCheckedModeBanner: false,
             builder: (BuildContext context, Widget? child) {
               final MediaQueryData data = MediaQuery.of(context);
-              ScreenUtil.setContext(context);
+              ScreenUtil.init(context);
               return MediaQuery(
-                data: data.copyWith(textScaleFactor: data.textScaleFactor > 2.0 ? 1.2 : data.textScaleFactor),
+                data: data.copyWith(
+                    textScaleFactor: data.textScaleFactor > 2.0
+                        ? 1.2
+                        : data.textScaleFactor),
                 child: child!,
               );
             },

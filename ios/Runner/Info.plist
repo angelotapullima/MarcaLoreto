@@ -22,6 +22,8 @@
 	<string>????</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Necesitamos acceso a la Galería de fotos para guardar las capturas de pantalla y compartirla con tus amigos.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Necesitamos tu ubicación para brindarte una mejor experiencia.</string>
 	<key>UISupportsDocumentBrowser</key>
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
