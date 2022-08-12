@@ -61,7 +61,9 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                 //   ChangeLanguage(),
                 // ],
               ),
-              floatingActionButton: (detalle.urlNegocio != null || detalle.facebookNegocio != null || detalle.catalogoNegocio != null)
+              floatingActionButton: (detalle.urlNegocio != null ||
+                      detalle.facebookNegocio != null ||
+                      detalle.catalogoNegocio != null)
                   ? SpeedDial(
                       animatedIcon: AnimatedIcons.menu_arrow,
                       overlayColor: Colors.black,
@@ -77,7 +79,9 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                                   Icons.download,
                                   color: Colors.white,
                                 ),
-                                label: (detalle.activarEnglish == '1') ? 'Download catalog' : 'Descargar catálogo')
+                                label: (detalle.activarEnglish == '1')
+                                    ? 'Download catalog'
+                                    : 'Descargar catálogo')
                             : SpeedDialChild(),
                         (detalle.urlNegocio != null)
                             ? SpeedDialChild(
@@ -110,7 +114,9 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                                   // );
                                 },
                                 child: const Icon(Icons.web_outlined),
-                                label: (detalle.activarEnglish == '1') ? 'Visit website' : 'Visitar página Web',
+                                label: (detalle.activarEnglish == '1')
+                                    ? 'Visit website'
+                                    : 'Visitar página Web',
                               )
                             : SpeedDialChild(),
                         (detalle.facebookNegocio != null)
@@ -138,8 +144,10 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                           height: ScreenUtil().setHeight(200),
                           width: double.infinity,
                           child: CachedNetworkImage(
-                            placeholder: (context, url) => const CupertinoActivityIndicator(),
-                            errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
+                            placeholder: (context, url) =>
+                                const CupertinoActivityIndicator(),
+                            errorWidget: (context, url, error) =>
+                                Image.asset('assets/img/logos/logo.png'),
                             imageUrl: '$apiBaseURL/${detalle.imageNegocio}',
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(
@@ -155,7 +163,8 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                           height: ScreenUtil().setHeight(34),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: ScreenUtil().setWidth(16)),
                           child: Text(
                             '${detalle.nombreNegocio}',
                             style: TextStyle(
@@ -168,9 +177,12 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                           height: ScreenUtil().setHeight(24),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: ScreenUtil().setWidth(16)),
                           child: Text(
-                            (detalle.activarEnglish == '1') ? '${detalle.detailNegocioEn}' : '${detalle.detalleNegocio}',
+                            (detalle.activarEnglish == '1')
+                                ? '${detalle.detailNegocioEn}'
+                                : '${detalle.detalleNegocio}',
                             style: TextStyle(
                               fontSize: ScreenUtil().setSp(16),
                               fontWeight: FontWeight.w400,
@@ -186,29 +198,40 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                     right: 0,
                     child: ValueListenableBuilder(
                       valueListenable: provider2.cargando,
-                      builder: (BuildContext context, double data, Widget? child) {
+                      builder:
+                          (BuildContext context, double data, Widget? child) {
                         return (data == 0.0)
                             ? Container()
                             : (data == 100.0)
                                 ? Container(
-                                    margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: ScreenUtil().setWidth(16)),
                                     padding: EdgeInsets.symmetric(
                                       vertical: ScreenUtil().setHeight(20),
                                     ),
-                                    decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: Center(
                                       child: Text(
-                                        (detalle.activarEnglish == '1') ? 'Full download' : 'Descarga completa',
-                                        style: const TextStyle(color: Colors.white),
+                                        (detalle.activarEnglish == '1')
+                                            ? 'Full download'
+                                            : 'Descarga completa',
+                                        style: const TextStyle(
+                                            color: Colors.white),
                                       ),
                                     ))
                                 : Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(10)),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: ScreenUtil().setWidth(10)),
                                     child: SizedBox(
                                       height: ScreenUtil().setHeight(40),
                                       child: Column(
                                         children: [
-                                          Text((detalle.activarEnglish == '1') ? 'Downloading $data%' : 'Descargando $data%'),
+                                          Text((detalle.activarEnglish == '1')
+                                              ? 'Downloading $data%'
+                                              : 'Descargando $data%'),
                                           LinearPercentIndicator(
                                             width: ScreenUtil().setWidth(100),
                                             lineHeight: 14.0,
@@ -251,7 +274,9 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                 builder: (BuildContext context, int data, Widget? child) {
                   return Center(
                     child: Text(
-                      (provider.activateS.value == 1) ? 'Oops sorry, no information' : 'Sin información disponible',
+                      (provider.activateS.value == 1)
+                          ? 'Oops sorry, no information'
+                          : 'Sin información disponible',
                       style: const TextStyle(
                         color: Colors.grey,
                       ),
@@ -301,7 +326,6 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
     try {
       await Future.delayed(const Duration(seconds: 1));
       await [
-        Permission.location,
         Permission.storage,
       ].request();
       var checkResult = await Permission.storage.status;
@@ -310,17 +334,21 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
         if (Platform.isIOS) {
           final documentDatabase = DocumentDatabase();
 
-          final res = await documentDatabase.getDocumentForId(detalle.idNegocio.toString());
+          final res = await documentDatabase
+              .getDocumentForId(detalle.idNegocio.toString());
 
-          if (res[0].documentUrlInterno != 'null' && res[0].documentUrlInterno!.isNotEmpty) {
+          if (res[0].documentUrlInterno != 'null' &&
+              res[0].documentUrlInterno!.isNotEmpty) {
             // ignore: unused_local_variable
-            final _result = OpenFile.open(res[0].documentUrlInterno).whenComplete(() {});
+            final _result =
+                OpenFile.open(res[0].documentUrlInterno).whenComplete(() {});
           } else {
             final testdir = (await getApplicationDocumentsDirectory()).path;
 
             options = DownloaderUtils(
               progressCallback: (current, total) {
-                provider2.cargando.value = double.parse((current / total * 100).toStringAsFixed(2));
+                provider2.cargando.value =
+                    double.parse((current / total * 100).toStringAsFixed(2));
               },
               file: File('/$testdir/${detalle.catalogoNegocio}'),
               progress: ProgressImplementation(),
@@ -330,7 +358,8 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                 documentModel.documentEstado = detalle.estadoNegocio;
                 documentModel.documentFile = detalle.catalogoNegocio;
                 documentModel.documentTitulo = detalle.nombreNegocio;
-                documentModel.documentUrlInterno = '$testdir/${detalle.catalogoNegocio}';
+                documentModel.documentUrlInterno =
+                    '$testdir/${detalle.catalogoNegocio}';
 
                 await documentDatabase.insertDocument(documentModel);
                 OpenFile.open('$testdir/${detalle.catalogoNegocio}');
@@ -339,21 +368,25 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
               },
               deleteOnCancel: true,
             );
-            core = await Flowder.download('$apiBaseURL/${detalle.catalogoNegocio}', options);
+            core = await Flowder.download(
+                '$apiBaseURL/${detalle.catalogoNegocio}', options);
           }
         } else {
           final documentDatabase = DocumentDatabase();
 
-          final res = await documentDatabase.getDocumentForId(detalle.idNegocio.toString());
+          final res = await documentDatabase
+              .getDocumentForId(detalle.idNegocio.toString());
 
-          if (res[0].documentUrlInterno != 'null' && res[0].documentUrlInterno!.isNotEmpty) {
+          if (res[0].documentUrlInterno != 'null' &&
+              res[0].documentUrlInterno!.isNotEmpty) {
             OpenFile.open(res[0].documentUrlInterno);
           } else {
             final testdir = (await getApplicationDocumentsDirectory()).path;
 
             options = DownloaderUtils(
               progressCallback: (current, total) {
-                provider2.cargando.value = double.parse((current / total * 100).toStringAsFixed(2));
+                provider2.cargando.value =
+                    double.parse((current / total * 100).toStringAsFixed(2));
               },
               file: File('/$testdir/${detalle.catalogoNegocio}'),
               progress: ProgressImplementation(),
@@ -363,7 +396,8 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
                 documentModel.documentEstado = detalle.estadoNegocio;
                 documentModel.documentFile = detalle.catalogoNegocio;
                 documentModel.documentTitulo = detalle.nombreNegocio;
-                documentModel.documentUrlInterno = '$testdir/${detalle.catalogoNegocio}';
+                documentModel.documentUrlInterno =
+                    '$testdir/${detalle.catalogoNegocio}';
 
                 await documentDatabase.insertDocument(documentModel);
                 OpenFile.open('$testdir/${detalle.catalogoNegocio}');
@@ -373,14 +407,14 @@ class _DetalleNegocioState extends State<DetalleNegocio> {
               deleteOnCancel: true,
             );
 
-            core = await Flowder.download('$apiBaseURL/${detalle.catalogoNegocio}', options);
+            core = await Flowder.download(
+                '$apiBaseURL/${detalle.catalogoNegocio}', options);
           }
         }
       } else if (await Permission.storage.request().isPermanentlyDenied) {
         await openAppSettings();
       } else if (await Permission.storage.request().isDenied) {
         Map<Permission, PermissionStatus> statuses = await [
-          Permission.location,
           Permission.storage,
         ].request();
         // ignore: avoid_print
