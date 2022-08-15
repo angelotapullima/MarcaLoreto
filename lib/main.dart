@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marca_loreto/home.dart';
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
-import 'package:marca_loreto/src/page/Tabs/Licenciatarios/detalle_negocio.dart';
+import 'package:marca_loreto/src/page/Tabs/Licensees/detail_business.dart';
 import 'package:marca_loreto/src/page/change_language.dart';
 import 'package:marca_loreto/src/page/splash.dart';
 import 'package:provider/provider.dart';

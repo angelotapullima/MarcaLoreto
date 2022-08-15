@@ -13,9 +13,9 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2), () async {
-      final inicioBloc = ProviderBloc.inicio(context);
-      final categoriasBloc = ProviderBloc.categorias(context);
-      final negociosBloc = ProviderBloc.negocio(context);
+      final inicioBloc = ProviderBloc.init(context);
+      final categoriasBloc = ProviderBloc.categories(context);
+      final negociosBloc = ProviderBloc.business(context);
       inicioBloc.updateLanguage('0');
       categoriasBloc.updateLanguage('0');
       negociosBloc.updateLanguage('0');

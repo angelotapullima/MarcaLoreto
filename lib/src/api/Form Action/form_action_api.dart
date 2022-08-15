@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:marca_loreto/src/utils/constants.dart';
 
 class FormActionApi {
-  Future<int> sendDatos(String nombre, String email) async {
+  Future<int> sendData(String nombre, String email) async {
     try {
       final url = Uri.parse('$apiBaseURL/api/App/ws_guardar_datos');
       final resp = await http.post(

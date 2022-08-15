@@ -2,14 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:marca_loreto/src/page/Tabs/Init/init.dart';
+import 'package:provider/provider.dart';
+
 import 'package:marca_loreto/src/bloc/provider_bloc.dart';
 import 'package:marca_loreto/src/page/Actions/form_action.dart';
-import 'package:marca_loreto/src/page/Tabs/Descubre/descubre.dart';
-import 'package:marca_loreto/src/page/Tabs/Experiencias/experiencias_con_appbar.dart';
-import 'package:marca_loreto/src/page/Tabs/Inicio/inicio.dart';
-import 'package:marca_loreto/src/page/Tabs/Licenciatarios/licenciatarios.dart';
+import 'package:marca_loreto/src/page/Tabs/Discover/discover_page.dart';
+import 'package:marca_loreto/src/page/Tabs/Experiences/experiences_with_appbar.dart';
+import 'package:marca_loreto/src/page/Tabs/Licensees/licensees.dart';
 import 'package:marca_loreto/src/utils/responsive.dart';
-import 'package:provider/provider.dart';
 
 import 'src/page/change_language.dart';
 
@@ -25,10 +26,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    pageList.add(const Inicio());
-    pageList.add(const Descubre());
-    pageList.add(const ExperienciasConAppBar());
-    pageList.add(const Licenciatarios());
+    pageList.add(const Init());
+    pageList.add(const DiscoverPage());
+    pageList.add(const ExperiencesWithAppBar());
+    pageList.add(const Licensees());
 
     super.initState();
   }
@@ -63,15 +64,18 @@ class _HomePageState extends State<HomePage> {
                               context,
                               PageRouteBuilder(
                                 opaque: false,
-                                pageBuilder: (context, animation, secondaryAnimation) {
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) {
                                   return FormAction();
                                 },
-                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
                                   var begin = const Offset(0.0, 1.0);
                                   var end = Offset.zero;
                                   var curve = Curves.ease;
 
-                                  var tween = Tween(begin: begin, end: end).chain(
+                                  var tween =
+                                      Tween(begin: begin, end: end).chain(
                                     CurveTween(curve: curve),
                                   );
 
@@ -151,9 +155,13 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                   ),
                                   Text(
-                                    (provider.activateS.value == 1) ? '    Home   ' : '    Inicio    ',
+                                    (provider.activateS.value == 1)
+                                        ? '    Home   '
+                                        : '    Inicio    ',
                                     style: TextStyle(
-                                      color: (bottomBloc.page == 0) ? const Color(0xFF008d36) : Colors.black,
+                                      color: (bottomBloc.page == 0)
+                                          ? const Color(0xFF008d36)
+                                          : Colors.black,
                                       fontSize: ScreenUtil().setSp(11),
                                     ),
                                   )
@@ -181,9 +189,13 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                   ),
                                   Text(
-                                    (provider.activateS.value == 1) ? '  Discover ' : '   Descubre   ',
+                                    (provider.activateS.value == 1)
+                                        ? '  Discover '
+                                        : '   Descubre   ',
                                     style: TextStyle(
-                                      color: (bottomBloc.page == 1) ? const Color(0xFF008d36) : Colors.black,
+                                      color: (bottomBloc.page == 1)
+                                          ? const Color(0xFF008d36)
+                                          : Colors.black,
                                       fontSize: ScreenUtil().setSp(11),
                                     ),
                                   )
@@ -211,9 +223,13 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                   ),
                                   Text(
-                                    (provider.activateS.value == 1) ? 'Experiences' : ' Experiencias ',
+                                    (provider.activateS.value == 1)
+                                        ? 'Experiences'
+                                        : ' Experiencias ',
                                     style: TextStyle(
-                                      color: (bottomBloc.page == 2) ? const Color(0xFF008d36) : Colors.black,
+                                      color: (bottomBloc.page == 2)
+                                          ? const Color(0xFF008d36)
+                                          : Colors.black,
                                       fontSize: ScreenUtil().setSp(11),
                                     ),
                                   )
@@ -241,9 +257,13 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                   ),
                                   Text(
-                                    (provider.activateS.value == 1) ? ' Licensees ' : 'Licenciatarios',
+                                    (provider.activateS.value == 1)
+                                        ? ' Licensees '
+                                        : 'Licenciatarios',
                                     style: TextStyle(
-                                      color: (bottomBloc.page == 3) ? const Color(0xFF008d36) : Colors.black,
+                                      color: (bottomBloc.page == 3)
+                                          ? const Color(0xFF008d36)
+                                          : Colors.black,
                                       fontSize: ScreenUtil().setSp(11),
                                     ),
                                   )

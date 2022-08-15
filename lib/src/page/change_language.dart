@@ -15,9 +15,9 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ControllerLanguage>(context, listen: false);
-    final inicioBloc = ProviderBloc.inicio(context);
-    final categoriasBloc = ProviderBloc.categorias(context);
-    final negociosBloc = ProviderBloc.negocio(context);
+    final inicioBloc = ProviderBloc.init(context);
+    final categoriasBloc = ProviderBloc.categories(context);
+    final negociosBloc = ProviderBloc.business(context);
     return ValueListenableBuilder(
       valueListenable: provider.activate,
       builder: (BuildContext context, int data, Widget? child) {
@@ -33,7 +33,9 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
               width: ScreenUtil().setWidth(48),
               child: SvgPicture.asset(
                 'assets/svg/icons/Idioma.svg',
-                color: (provider.activateS.value == 1) ? const Color(0xFF008d36) : Colors.grey,
+                color: (provider.activateS.value == 1)
+                    ? const Color(0xFF008d36)
+                    : Colors.grey,
               ),
             ),
             padding: const EdgeInsets.all(0),
@@ -42,8 +44,12 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                     child: Row(
                       children: [
                         Icon(
-                          (provider.activateS.value == 0) ? Icons.circle : Icons.circle_outlined,
-                          color: (provider.activateS.value == 0) ? const Color(0XFFF9B233) : Colors.grey,
+                          (provider.activateS.value == 0)
+                              ? Icons.circle
+                              : Icons.circle_outlined,
+                          color: (provider.activateS.value == 0)
+                              ? const Color(0XFFF9B233)
+                              : Colors.grey,
                           size: ScreenUtil().setHeight(18),
                         ),
                         SizedBox(
@@ -58,8 +64,12 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                     child: Row(
                       children: [
                         Icon(
-                          (provider.activateS.value == 1) ? Icons.circle : Icons.circle_outlined,
-                          color: (provider.activateS.value == 1) ? const Color(0XFFF9B233) : Colors.grey,
+                          (provider.activateS.value == 1)
+                              ? Icons.circle
+                              : Icons.circle_outlined,
+                          color: (provider.activateS.value == 1)
+                              ? const Color(0XFFF9B233)
+                              : Colors.grey,
                           size: ScreenUtil().setHeight(18),
                         ),
                         SizedBox(

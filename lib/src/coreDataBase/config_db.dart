@@ -1,6 +1,6 @@
-import 'package:marca_loreto/src/coreDataBase/categoria_db.dart';
-import 'package:marca_loreto/src/coreDataBase/inicio_db.dart';
-import 'package:marca_loreto/src/coreDataBase/negocio_db.dart';
+import 'package:marca_loreto/src/coreDataBase/category_db.dart';
+import 'package:marca_loreto/src/coreDataBase/init_db.dart';
+import 'package:marca_loreto/src/coreDataBase/business_db.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -15,20 +15,20 @@ class DatabaseHelper {
     final String path = join(await getDatabasesPath(), 'marcaLoreto3.db');
     return openDatabase(path, onCreate: (db, version) {
       //Inicio
-      db.execute(InicioDB.tableBannerSql);
-      db.execute(InicioDB.tableSeccionSql);
-      db.execute(InicioDB.tableArchivosSql);
-      db.execute(InicioDB.tableBlogsSql);
-      db.execute(InicioDB.tableGaleriaSql);
+      db.execute(InitDB.tableBannerSql);
+      db.execute(InitDB.tableSeccionSql);
+      db.execute(InitDB.tableArchivosSql);
+      db.execute(InitDB.tableBlogsSql);
+      db.execute(InitDB.tableGaleriaSql);
 
       //Descubre
-      db.execute(CategoriaDB.tableCategoriaSql);
-      db.execute(CategoriaDB.tableDetalleCategoriaSql);
+      db.execute(CategoryDB.tableCategoriaSql);
+      db.execute(CategoryDB.tableDetalleCategoriaSql);
 
       //Licenciatarios
-      db.execute(NegocioDB.tableCategoriasNegocioSql);
-      db.execute(NegocioDB.tableNegocioSql);
-      db.execute(NegocioDB.tableDocumentSql);
+      db.execute(BusinessDB.tableCategoriasNegocioSql);
+      db.execute(BusinessDB.tableNegocioSql);
+      db.execute(BusinessDB.tableDocumentSql);
     }, version: 1, onDowngrade: onDatabaseDowngradeDelete);
   }
 }
