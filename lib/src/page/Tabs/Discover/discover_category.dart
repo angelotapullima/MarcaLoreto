@@ -97,14 +97,12 @@ class DiscoverCategory extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) {
+                            pageBuilder: (context, animation, secondaryAnimation) {
                               return DetailDiscover(
                                 category: category,
                               );
                             },
-                            transitionsBuilder: (context, animation,
-                                secondaryAnimation, child) {
+                            transitionsBuilder: (context, animation, secondaryAnimation, child) {
                               var begin = const Offset(0.0, 1.0);
                               var end = Offset.zero;
                               var curve = Curves.ease;
@@ -133,14 +131,10 @@ class DiscoverCategory extends StatelessWidget {
                                 height: double.infinity,
                                 width: double.infinity,
                                 child: CachedNetworkImage(
-                                  placeholder: (context, url) =>
-                                      const CupertinoActivityIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Image.asset('assets/img/logos/logo.png'),
-                                  imageUrl:
-                                      '$apiBaseURL/${category.imageCategory}',
-                                  imageBuilder: (context, imageProvider) =>
-                                      Container(
+                                  placeholder: (context, url) => const CupertinoActivityIndicator(),
+                                  errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
+                                  imageUrl: '$apiBaseURL/${category.imageCategory}',
+                                  imageBuilder: (context, imageProvider) => Container(
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         image: imageProvider,
@@ -152,20 +146,19 @@ class DiscoverCategory extends StatelessWidget {
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.blue[200 + index % 4 * 100]!
-                                        .withOpacity(0.9)),
+                                    borderRadius: BorderRadius.circular(20), color: Colors.blue[200 + index % 4 * 100]!.withOpacity(0.9)),
                               ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  (category.activateEnglish == '1')
-                                      ? '${category.nameCategoryEn}'
-                                      : '${category.nameCategory}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: ScreenUtil().setSp(14),
-                                    fontWeight: FontWeight.w700,
+                              Center(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    (category.activateEnglish == '1') ? '${category.nameCategoryEn}' : '${category.nameCategory}',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: ScreenUtil().setSp(14),
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                 ),
                               )

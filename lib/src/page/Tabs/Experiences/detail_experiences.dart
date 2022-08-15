@@ -22,8 +22,7 @@ class DetailExperiences extends StatelessWidget {
                   itemBuilder: (_, i) {
                     var detail = snapshot.data![i];
                     return Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical: ScreenUtil().setHeight(20)),
+                        margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(20)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -32,32 +31,25 @@ class DetailExperiences extends StatelessWidget {
                                 SizedBox(
                                   width: ScreenUtil().setWidth(16),
                                 ),
-                                Text(
-                                  (detail.activateEnglish == '1')
-                                      ? '${detail.subtitleDetailCategoryEn}'
-                                      : '${detail.subtitleDetailCategory}',
-                                  style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(20),
-                                    fontWeight: FontWeight.w700,
+                                Expanded(
+                                  child: Text(
+                                    (detail.activateEnglish == '1') ? '${detail.subtitleDetailCategoryEn}' : '${detail.subtitleDetailCategory}',
+                                    style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(20),
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                 ),
-                                const Spacer(),
-                                SizedBox(
-                                    width: ScreenUtil().setWidth(150),
-                                    child: SvgPicture.asset(
-                                        'assets/svg/icons/vector_title_inicio.svg')),
+                                SizedBox(width: ScreenUtil().setWidth(150), child: SvgPicture.asset('assets/svg/icons/vector_title_inicio.svg')),
                               ],
                             ),
                             SizedBox(
                               height: ScreenUtil().setHeight(32),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: ScreenUtil().setWidth(16)),
+                              padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                               child: Text(
-                                (detail.activateEnglish == '1')
-                                    ? '${detail.detailCategoriaDetalleEn}'
-                                    : '${detail.detalleCategoriaDetalle}',
+                                (detail.activateEnglish == '1') ? '${detail.detailCategoriaDetalleEn}' : '${detail.detalleCategoriaDetalle}',
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: ScreenUtil().setSp(14),
@@ -70,19 +62,15 @@ class DetailExperiences extends StatelessWidget {
                             ),
                             Container(
                               height: ScreenUtil().setHeight(200),
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: ScreenUtil().setWidth(16)),
+                              margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                               width: double.infinity,
                               child: CachedNetworkImage(
-                                placeholder: (context, url) =>
-                                    const CupertinoActivityIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset('assets/img/logos/logo.png'),
-                                imageUrl:
-                                    '$apiBaseURL/${detail.imageDetailCategory}',
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
+                                placeholder: (context, url) => const CupertinoActivityIndicator(),
+                                errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
+                                imageUrl: '$apiBaseURL/${detail.imageDetailCategory}',
+                                imageBuilder: (context, imageProvider) => Container(
                                   decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
                                     image: DecorationImage(
                                       image: imageProvider,
                                       fit: BoxFit.cover,

@@ -38,8 +38,7 @@ class CategoryApi {
         categoryModel.imageCategory = data["app_descubre_cat_foto"];
         categoryModel.estateCategory = data["app_descubre_cat_estado"];
 
-        final categoryDB = await categoryDesDB
-            .getCategoryByIdCategory(categoryModel.idCategory.toString());
+        final categoryDB = await categoryDesDB.getCategoryByIdCategory(categoryModel.idCategory.toString());
 
         if (categoryDB.isNotEmpty) {
           categoryModel.activateEnglish = categoryDB[0].activateEnglish;
@@ -57,18 +56,14 @@ class CategoryApi {
         DetailCategoryModel detalleModel = DetailCategoryModel();
         detalleModel.idDetailCategory = data["id_app_descubre_det"];
         detalleModel.idCategory = data["id_app_descubre_cat"];
-        detalleModel.subtitleDetailCategory =
-            data["app_descubre_det_subtitulo"];
-        detalleModel.subtitleDetailCategoryEn =
-            data["app_descubre_det_subtitulo_en"];
+        detalleModel.subtitleDetailCategory = data["app_descubre_det_subtitulo"];
+        detalleModel.subtitleDetailCategoryEn = data["app_descubre_det_subtitulo_en"];
         detalleModel.imageDetailCategory = data["app_descubre_det_foto"];
-        detalleModel.estateDetailCategory = data["app_descubre_det_estado"];
+        detalleModel.estadoDetalleCategoria = data["app_descubre_det_estado"];
         detalleModel.detalleCategoriaDetalle = data["app_descubre_det_detalle"];
-        detalleModel.detailCategoriaDetalleEn =
-            data["app_descubre_det_detalle_en"];
+        detalleModel.detailCategoriaDetalleEn = data["app_descubre_det_detalle_en"];
 
-        final detalleDB = await detailDesDB.getDetalleByIdDetalleCategoria(
-            detalleModel.idDetailCategory.toString());
+        final detalleDB = await detailDesDB.getDetalleByIdDetalleCategoria(detalleModel.idDetailCategory.toString());
 
         if (detalleDB.isNotEmpty) {
           detalleModel.activateEnglish = detalleDB[0].activateEnglish;
@@ -80,9 +75,7 @@ class CategoryApi {
       }
 
       //Categorias Experiencias
-      for (var i = 0;
-          i < decodedData["experiencias"]["categorias"].length;
-          i++) {
+      for (var i = 0; i < decodedData["experiencias"]["categorias"].length; i++) {
         var data = decodedData["experiencias"]["categorias"][i];
 
         CategoryModel categoriaModel = CategoryModel();
@@ -93,8 +86,7 @@ class CategoryApi {
         categoriaModel.imageCategory = data["app_descubre_cat_foto"];
         categoriaModel.estateCategory = data["app_descubre_cat_estado"];
 
-        final categoryDB = await categoryDesDB
-            .getCategoryByIdCategory(categoriaModel.idCategory.toString());
+        final categoryDB = await categoryDesDB.getCategoryByIdCategory(categoriaModel.idCategory.toString());
 
         if (categoryDB.isNotEmpty) {
           categoriaModel.activateEnglish = categoryDB[0].activateEnglish;
@@ -112,18 +104,14 @@ class CategoryApi {
         DetailCategoryModel detalleModel = DetailCategoryModel();
         detalleModel.idDetailCategory = data["id_app_descubre_det"];
         detalleModel.idCategory = data["id_app_descubre_cat"];
-        detalleModel.subtitleDetailCategory =
-            data["app_descubre_det_subtitulo"];
-        detalleModel.subtitleDetailCategoryEn =
-            data["app_descubre_det_subtitulo_en"];
+        detalleModel.subtitleDetailCategory = data["app_descubre_det_subtitulo"];
+        detalleModel.subtitleDetailCategoryEn = data["app_descubre_det_subtitulo_en"];
         detalleModel.imageDetailCategory = data["app_descubre_det_foto"];
-        detalleModel.estateDetailCategory = data["app_descubre_det_estado"];
+        detalleModel.estadoDetalleCategoria = data["app_descubre_det_estado"];
         detalleModel.detalleCategoriaDetalle = data["app_descubre_det_detalle"];
-        detalleModel.detailCategoriaDetalleEn =
-            data["app_descubre_det_detalle_en"];
+        detalleModel.detailCategoriaDetalleEn = data["app_descubre_det_detalle_en"];
 
-        final detalleDB = await detailDesDB.getDetalleByIdDetalleCategoria(
-            detalleModel.idDetailCategory.toString());
+        final detalleDB = await detailDesDB.getDetalleByIdDetalleCategoria(detalleModel.idDetailCategory.toString());
 
         if (detalleDB.isNotEmpty) {
           detalleModel.activateEnglish = detalleDB[0].activateEnglish;
@@ -135,21 +123,16 @@ class CategoryApi {
       }
 
       //Categorias Negocios (Licenciatarios)
-      for (var i = 0;
-          i < decodedData["licenciatarios"]["categorias"].length;
-          i++) {
+      for (var i = 0; i < decodedData["licenciatarios"]["categorias"].length; i++) {
         var data = decodedData["licenciatarios"]["categorias"][i];
 
         BusinessCategoryModel categoriaModel = BusinessCategoryModel();
         categoriaModel.idBusinessCategory = data["id_app_negocio_cat"];
         categoriaModel.nameBusinessCategory = data["app_negocio_cat_nombre"];
-        categoriaModel.nameBusinessCategoryEn =
-            data["app_negocio_cat_nombre_en"];
+        categoriaModel.nameBusinessCategoryEn = data["app_negocio_cat_nombre_en"];
         categoriaModel.stateBusinessCategory = data["app_negocio_cat_estado"];
 
-        final catNegDB =
-            await businessCategoryDB.getBusinessCategoryByIdCategory(
-                categoriaModel.idBusinessCategory.toString());
+        final catNegDB = await businessCategoryDB.getBusinessCategoryByIdCategory(categoriaModel.idBusinessCategory.toString());
 
         if (catNegDB.isNotEmpty) {
           categoriaModel.activateEnglish = catNegDB[0].activateEnglish;
@@ -161,9 +144,7 @@ class CategoryApi {
       }
 
       //Detalle Negocios (Licenciatarios)
-      for (var i = 0;
-          i < decodedData["licenciatarios"]["detalle"].length;
-          i++) {
+      for (var i = 0; i < decodedData["licenciatarios"]["detalle"].length; i++) {
         var data = decodedData["licenciatarios"]["detalle"][i];
 
         BusinessModel negocioModel = BusinessModel();
@@ -177,10 +158,9 @@ class CategoryApi {
         negocioModel.facebookBusiness = data["app_negocio_det_facebook"];
         negocioModel.catalogueBusiness = data["app_negocio_det_file"];
         negocioModel.dateTimeBusiness = data["app_negocio_det_datetime"];
-        negocioModel.stateBusiness = data["app_negocio_det_estado"];
+        negocioModel.estadoNegocio = data["app_negocio_det_estado"];
 
-        final negociosDB = await businessDb
-            .getBusinessByIdBusiness(negocioModel.idBusiness.toString());
+        final negociosDB = await businessDb.getBusinessByIdBusiness(negocioModel.idBusiness.toString());
 
         if (negociosDB.isNotEmpty) {
           negocioModel.activateEnglish = negociosDB[0].activateEnglish;

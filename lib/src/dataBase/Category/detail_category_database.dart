@@ -19,13 +19,11 @@ class DetailCategoryDatabase {
     }
   }
 
-  Future<List<DetailCategoryModel>> getDetailByIdCategory(
-      String idCategoria) async {
+  Future<List<DetailCategoryModel>> getDetailByIdCategory(String idCategoria) async {
     try {
       final Database db = await providerDatabase.getDatabase();
       List<DetailCategoryModel> list = [];
-      List<Map> maps = await db.rawQuery(
-          "SELECT * FROM DetalleCategoria WHERE idCategoria='$idCategoria' ");
+      List<Map> maps = await db.rawQuery("SELECT * FROM DetalleCategoria WHERE idCategoria='$idCategoria' AND estadoDetalleCategoria ='1'");
 
       if (maps.isNotEmpty) list = DetailCategoryModel.fromJsonList(maps);
       return list;
@@ -36,13 +34,11 @@ class DetailCategoryDatabase {
 
   //Language
 
-  Future<List<DetailCategoryModel>> getDetalleByIdDetalleCategoria(
-      String idDetalleCategoria) async {
+  Future<List<DetailCategoryModel>> getDetalleByIdDetalleCategoria(String idDetalleCategoria) async {
     try {
       final Database db = await providerDatabase.getDatabase();
       List<DetailCategoryModel> list = [];
-      List<Map> maps = await db.rawQuery(
-          "SELECT * FROM DetalleCategoria WHERE idDetalleCategoria='$idDetalleCategoria' ");
+      List<Map> maps = await db.rawQuery("SELECT * FROM DetalleCategoria WHERE idDetalleCategoria='$idDetalleCategoria' ");
 
       if (maps.isNotEmpty) list = DetailCategoryModel.fromJsonList(maps);
       return list;
@@ -55,8 +51,7 @@ class DetailCategoryDatabase {
     try {
       final db = await providerDatabase.database;
 
-      final res = await db
-          .rawUpdate("UPDATE DetalleCategoria SET activarEnglish='$value'");
+      final res = await db.rawUpdate("UPDATE DetalleCategoria SET activarEnglish='$value'");
 
       return res;
     } catch (exception) {

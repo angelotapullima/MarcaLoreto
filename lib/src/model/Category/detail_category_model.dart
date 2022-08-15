@@ -4,7 +4,7 @@ class DetailCategoryModel {
   String? subtitleDetailCategory;
   String? subtitleDetailCategoryEn;
   String? imageDetailCategory;
-  String? estateDetailCategory;
+  String? estadoDetalleCategoria;
   String? detalleCategoriaDetalle;
   String? detailCategoriaDetalleEn;
   String? activateEnglish;
@@ -15,7 +15,7 @@ class DetailCategoryModel {
     this.subtitleDetailCategory,
     this.subtitleDetailCategoryEn,
     this.imageDetailCategory,
-    this.estateDetailCategory,
+    this.estadoDetalleCategoria,
     this.detalleCategoriaDetalle,
     this.detailCategoriaDetalleEn,
     this.activateEnglish,
@@ -27,23 +27,21 @@ class DetailCategoryModel {
         'subtituloDetalleCategoria': subtitleDetailCategory,
         'subtitleDetalleCategoriaEn': subtitleDetailCategoryEn,
         'imageDetalleCategoria': imageDetailCategory,
-        'estadoDetalleCategoria': estateDetailCategory,
+        'estadoDetalleCategoria': estadoDetalleCategoria,
         'detalleCategoriaDetalle': detalleCategoriaDetalle,
         'detailCategoriaDetalleEn': detailCategoriaDetalleEn,
         'activarEnglish': activateEnglish,
       };
 
-  static List<DetailCategoryModel> fromJsonList(List<dynamic> json) =>
-      json.map((i) => DetailCategoryModel.fromJson(i)).toList();
+  static List<DetailCategoryModel> fromJsonList(List<dynamic> json) => json.map((i) => DetailCategoryModel.fromJson(i)).toList();
 
-  factory DetailCategoryModel.fromJson(Map<String, dynamic> json) =>
-      DetailCategoryModel(
+  factory DetailCategoryModel.fromJson(Map<String, dynamic> json) => DetailCategoryModel(
         idDetailCategory: json["idDetalleCategoria"],
         idCategory: json["idCategoria"],
         subtitleDetailCategory: json["subtituloDetalleCategoria"],
         subtitleDetailCategoryEn: json["subtitleDetalleCategoriaEn"],
         imageDetailCategory: json["imageDetalleCategoria"],
-        estateDetailCategory: json["estadoDetalleCategoria"],
+        estadoDetalleCategoria: json["estadoDetalleCategoria"],
         detalleCategoriaDetalle: json["detalleCategoriaDetalle"],
         detailCategoriaDetalleEn: json["detailCategoriaDetalleEn"],
         activateEnglish: json["activarEnglish"],

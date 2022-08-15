@@ -56,20 +56,16 @@ class DetailDiscover extends StatelessWidget {
                         SizedBox(
                           width: ScreenUtil().setWidth(16),
                         ),
-                        Text(
-                          (category.activateEnglish == '1')
-                              ? '${category.nameCategoryEn}'
-                              : '${category.nameCategory}',
-                          style: TextStyle(
-                            fontSize: ScreenUtil().setSp(20),
-                            fontWeight: FontWeight.w700,
+                        Expanded(
+                          child: Text(
+                            (category.activateEnglish == '1') ? '${category.nameCategoryEn}' : '${category.nameCategory}',
+                            style: TextStyle(
+                              fontSize: ScreenUtil().setSp(20),
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                        const Spacer(),
-                        SizedBox(
-                            width: ScreenUtil().setWidth(150),
-                            child: SvgPicture.asset(
-                                'assets/svg/icons/vector_title_inicio.svg')),
+                        SizedBox(width: ScreenUtil().setWidth(150), child: SvgPicture.asset('assets/svg/icons/vector_title_inicio.svg')),
                       ],
                     ),
                     SizedBox(
@@ -77,14 +73,11 @@ class DetailDiscover extends StatelessWidget {
                     ),
                     Container(
                       height: ScreenUtil().setHeight(200),
-                      margin: EdgeInsets.symmetric(
-                          horizontal: ScreenUtil().setWidth(16)),
+                      margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                       width: double.infinity,
                       child: CachedNetworkImage(
-                        placeholder: (context, url) =>
-                            const CupertinoActivityIndicator(),
-                        errorWidget: (context, url, error) =>
-                            Image.asset('assets/img/logos/logo.png'),
+                        placeholder: (context, url) => const CupertinoActivityIndicator(),
+                        errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
                         imageUrl: '$apiBaseURL/${detalle.imageDetailCategory}',
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
@@ -100,12 +93,9 @@ class DetailDiscover extends StatelessWidget {
                       height: ScreenUtil().setHeight(34),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: ScreenUtil().setWidth(16)),
+                      padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                       child: Text(
-                        (detalle.activateEnglish == '1')
-                            ? '${detalle.subtitleDetailCategoryEn}'
-                            : '${detalle.subtitleDetailCategory}',
+                        (detalle.activateEnglish == '1') ? '${detalle.subtitleDetailCategoryEn}' : '${detalle.subtitleDetailCategory}',
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(16),
                           fontWeight: FontWeight.w700,
@@ -116,17 +106,18 @@ class DetailDiscover extends StatelessWidget {
                       height: ScreenUtil().setHeight(24),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: ScreenUtil().setWidth(16)),
+                      padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                       child: Text(
-                        (detalle.activateEnglish == '1')
-                            ? '${detalle.detailCategoriaDetalleEn}'
-                            : '${detalle.detalleCategoriaDetalle}',
+                        (detalle.activateEnglish == '1') ? '${detalle.detailCategoriaDetalleEn}' : '${detalle.detalleCategoriaDetalle}',
+                        textAlign: TextAlign.justify,
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(16),
                           fontWeight: FontWeight.w400,
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      height: ScreenUtil().setHeight(30),
                     ),
                   ],
                 ),
@@ -137,9 +128,7 @@ class DetailDiscover extends StatelessWidget {
                 builder: (BuildContext context, int data, Widget? child) {
                   return Center(
                     child: Text(
-                      (provider.activateS.value == 1)
-                          ? 'Oops sorry, no information'
-                          : 'Sin información disponible',
+                      (provider.activateS.value == 1) ? 'Oops sorry, no information' : 'Sin información disponible',
                       style: const TextStyle(
                         color: Colors.grey,
                       ),

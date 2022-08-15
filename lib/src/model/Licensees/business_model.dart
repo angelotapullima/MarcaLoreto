@@ -9,7 +9,7 @@ class BusinessModel {
   String? facebookBusiness;
   String? catalogueBusiness;
   String? dateTimeBusiness;
-  String? stateBusiness;
+  String? estadoNegocio;
   String? activateEnglish;
 
   //No en base de datos
@@ -27,7 +27,7 @@ class BusinessModel {
     this.facebookBusiness,
     this.catalogueBusiness,
     this.dateTimeBusiness,
-    this.stateBusiness,
+    this.estadoNegocio,
     this.nameCategory,
     this.nameCategoryEn,
     this.activateEnglish,
@@ -44,12 +44,11 @@ class BusinessModel {
         'facebookNegocio': facebookBusiness,
         'catalogoNegocio': catalogueBusiness,
         'dateTimeNegocio': dateTimeBusiness,
-        'estadoNegocio': stateBusiness,
+        'estadoNegocio': estadoNegocio,
         'activarEnglish': activateEnglish,
       };
 
-  static List<BusinessModel> fromJsonList(List<dynamic> json) =>
-      json.map((i) => BusinessModel.fromJson(i)).toList();
+  static List<BusinessModel> fromJsonList(List<dynamic> json) => json.map((i) => BusinessModel.fromJson(i)).toList();
 
   factory BusinessModel.fromJson(Map<String, dynamic> json) => BusinessModel(
         idBusiness: json["idNegocio"],
@@ -62,7 +61,7 @@ class BusinessModel {
         facebookBusiness: json["facebookNegocio"],
         catalogueBusiness: json["catalogoNegocio"],
         dateTimeBusiness: json["dateTimeNegocio"],
-        stateBusiness: json["estadoNegocio"],
+        estadoNegocio: json["estadoNegocio"],
         activateEnglish: json["activarEnglish"],
       );
 }

@@ -34,10 +34,8 @@ class _BannersState extends State<Banners> {
                   return Stack(
                     children: [
                       CachedNetworkImage(
-                        placeholder: (context, url) =>
-                            const Center(child: CupertinoActivityIndicator()),
-                        errorWidget: (context, url, error) =>
-                            Image.asset('assets/img/logos/logo.png'),
+                        placeholder: (context, url) => const Center(child: CupertinoActivityIndicator()),
+                        errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
                         imageUrl: '$apiBaseURL/${banner.imageBanner}',
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
@@ -49,16 +47,13 @@ class _BannersState extends State<Banners> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: ScreenUtil().setWidth(8)),
+                        padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(8)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Spacer(),
                             Text(
-                              (banner.activateEnglish == '1')
-                                  ? '${banner.titleBannerEn}'
-                                  : '${banner.titleBanner}',
+                              (banner.activateEnglish == '1') ? '${banner.titleBannerEn}' : '${banner.titleBanner}',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: Colors.white,
@@ -70,9 +65,7 @@ class _BannersState extends State<Banners> {
                               height: ScreenUtil().setHeight(8),
                             ),
                             Text(
-                              (banner.activateEnglish == '1')
-                                  ? '${banner.subtitleBannerEn}'
-                                  : '${banner.subtitleBanner}',
+                              (banner.activateEnglish == '1') ? '${banner.subtitleBannerEn}' : '${banner.subtitleBanner}',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: Colors.white,
@@ -115,24 +108,21 @@ class _BannersState extends State<Banners> {
                                 builder: (_, r) {
                                   return Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: snapshot.data!
-                                        .asMap()
-                                        .entries
-                                        .map((entry) {
+                                    children: snapshot.data!.asMap().entries.map((entry) {
                                       return Container(
-                                        width: ScreenUtil().setWidth(120) /
-                                            snapshot.data!.length,
+                                        width: ScreenUtil().setWidth(120) / snapshot.data!.length,
                                         height: ScreenUtil().setHeight(3),
-                                        margin: EdgeInsets.symmetric(
-                                            vertical: ScreenUtil().setHeight(8),
-                                            horizontal:
-                                                ScreenUtil().setWidth(4)),
+                                        margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(8), horizontal: ScreenUtil().setWidth(4)),
                                         decoration: BoxDecoration(
-                                          color:
-                                              (_controller.index == entry.key)
-                                                  ? const Color(0XFFF9B233)
-                                                  : Colors.white,
-                                        ),
+                                            color: (_controller.index == entry.key) ? const Color(0XFFF9B233) : Colors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black.withOpacity(0.3),
+                                                spreadRadius: 3,
+                                                blurRadius: 5,
+                                                offset: const Offset(0, 3),
+                                              ),
+                                            ]),
                                       );
                                     }).toList(),
                                   );
@@ -145,6 +135,14 @@ class _BannersState extends State<Banners> {
                                 Icons.keyboard_arrow_down,
                                 size: ScreenUtil().setHeight(40),
                                 color: Colors.white,
+                                shadows: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.9),
+                                    spreadRadius: 20,
+                                    blurRadius: 15,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(

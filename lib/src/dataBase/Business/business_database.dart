@@ -19,13 +19,11 @@ class BusinessDatabase {
     }
   }
 
-  Future<List<BusinessModel>> getBusinessByIdCategory(
-      String idCategoriaNeg) async {
+  Future<List<BusinessModel>> getBusinessByIdCategory(String idCategoriaNeg) async {
     try {
       final Database db = await providerDatabase.getDatabase();
       List<BusinessModel> list = [];
-      List<Map> maps = await db.rawQuery(
-          "SELECT * FROM Negocio WHERE idCategoriaNeg='$idCategoriaNeg' ");
+      List<Map> maps = await db.rawQuery("SELECT * FROM Negocio WHERE idCategoriaNeg='$idCategoriaNeg' AND estadoNegocio='1'");
 
       if (maps.isNotEmpty) list = BusinessModel.fromJsonList(maps);
       return list;
@@ -38,8 +36,7 @@ class BusinessDatabase {
     try {
       final Database db = await providerDatabase.getDatabase();
       List<BusinessModel> list = [];
-      List<Map> maps = await db
-          .rawQuery("SELECT * FROM Negocio WHERE idNegocio='$isBusiness' ");
+      List<Map> maps = await db.rawQuery("SELECT * FROM Negocio WHERE idNegocio='$isBusiness' ");
 
       if (maps.isNotEmpty) list = BusinessModel.fromJsonList(maps);
       return list;
@@ -54,8 +51,7 @@ class BusinessDatabase {
     try {
       final db = await providerDatabase.database;
 
-      final res =
-          await db.rawUpdate("UPDATE Negocio SET activarEnglish='$value'");
+      final res = await db.rawUpdate("UPDATE Negocio SET activarEnglish='$value'");
 
       return res;
     } catch (exception) {

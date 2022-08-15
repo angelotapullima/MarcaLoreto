@@ -61,9 +61,7 @@ class _DetailBusinessState extends State<DetailBusiness> {
                 //   ChangeLanguage(),
                 // ],
               ),
-              floatingActionButton: (detail.urlBusiness != null ||
-                      detail.facebookBusiness != null ||
-                      detail.catalogueBusiness != null)
+              floatingActionButton: (detail.urlBusiness != null || detail.facebookBusiness != null || detail.catalogueBusiness != null)
                   ? SpeedDial(
                       animatedIcon: AnimatedIcons.menu_arrow,
                       overlayColor: Colors.black,
@@ -79,9 +77,7 @@ class _DetailBusinessState extends State<DetailBusiness> {
                                   Icons.download,
                                   color: Colors.white,
                                 ),
-                                label: (detail.activateEnglish == '1')
-                                    ? 'Download catalog'
-                                    : 'Descargar catálogo')
+                                label: (detail.activateEnglish == '1') ? 'Download catalog' : 'Descargar catálogo')
                             : SpeedDialChild(),
                         (detail.urlBusiness != null)
                             ? SpeedDialChild(
@@ -114,9 +110,7 @@ class _DetailBusinessState extends State<DetailBusiness> {
                                   // );
                                 },
                                 child: const Icon(Icons.web_outlined),
-                                label: (detail.activateEnglish == '1')
-                                    ? 'Visit website'
-                                    : 'Visitar página Web',
+                                label: (detail.activateEnglish == '1') ? 'Visit website' : 'Visitar página Web',
                               )
                             : SpeedDialChild(),
                         (detail.facebookBusiness != null)
@@ -144,10 +138,8 @@ class _DetailBusinessState extends State<DetailBusiness> {
                           height: ScreenUtil().setHeight(200),
                           width: double.infinity,
                           child: CachedNetworkImage(
-                            placeholder: (context, url) =>
-                                const CupertinoActivityIndicator(),
-                            errorWidget: (context, url, error) =>
-                                Image.asset('assets/img/logos/logo.png'),
+                            placeholder: (context, url) => const CupertinoActivityIndicator(),
+                            errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
                             imageUrl: '$apiBaseURL/${detail.imageBusiness}',
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(
@@ -163,8 +155,7 @@ class _DetailBusinessState extends State<DetailBusiness> {
                           height: ScreenUtil().setHeight(34),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: ScreenUtil().setWidth(16)),
+                          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                           child: Text(
                             '${detail.nameBusiness}',
                             style: TextStyle(
@@ -177,17 +168,18 @@ class _DetailBusinessState extends State<DetailBusiness> {
                           height: ScreenUtil().setHeight(24),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: ScreenUtil().setWidth(16)),
+                          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                           child: Text(
-                            (detail.activateEnglish == '1')
-                                ? '${detail.detailBusinessEn}'
-                                : '${detail.detailBusiness}',
+                            (detail.activateEnglish == '1') ? '${detail.detailBusinessEn}' : '${detail.detailBusiness}',
+                            textAlign: TextAlign.justify,
                             style: TextStyle(
                               fontSize: ScreenUtil().setSp(16),
                               fontWeight: FontWeight.w400,
                             ),
                           ),
+                        ),
+                        SizedBox(
+                          height: ScreenUtil().setHeight(80),
                         ),
                       ],
                     ),
@@ -198,40 +190,29 @@ class _DetailBusinessState extends State<DetailBusiness> {
                     right: 0,
                     child: ValueListenableBuilder(
                       valueListenable: provider2.cargando,
-                      builder:
-                          (BuildContext context, double data, Widget? child) {
+                      builder: (BuildContext context, double data, Widget? child) {
                         return (data == 0.0)
                             ? Container()
                             : (data == 100.0)
                                 ? Container(
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: ScreenUtil().setWidth(16)),
+                                    margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(16)),
                                     padding: EdgeInsets.symmetric(
                                       vertical: ScreenUtil().setHeight(20),
                                     ),
-                                    decoration: BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(10)),
                                     child: Center(
                                       child: Text(
-                                        (detail.activateEnglish == '1')
-                                            ? 'Full download'
-                                            : 'Descarga completa',
-                                        style: const TextStyle(
-                                            color: Colors.white),
+                                        (detail.activateEnglish == '1') ? 'Full download' : 'Descarga completa',
+                                        style: const TextStyle(color: Colors.white),
                                       ),
                                     ))
                                 : Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: ScreenUtil().setWidth(10)),
+                                    padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(10)),
                                     child: SizedBox(
                                       height: ScreenUtil().setHeight(40),
                                       child: Column(
                                         children: [
-                                          Text((detail.activateEnglish == '1')
-                                              ? 'Downloading $data%'
-                                              : 'Descargando $data%'),
+                                          Text((detail.activateEnglish == '1') ? 'Downloading $data%' : 'Descargando $data%'),
                                           LinearPercentIndicator(
                                             width: ScreenUtil().setWidth(100),
                                             lineHeight: 14.0,
@@ -274,9 +255,7 @@ class _DetailBusinessState extends State<DetailBusiness> {
                 builder: (BuildContext context, int data, Widget? child) {
                   return Center(
                     child: Text(
-                      (provider.activateS.value == 1)
-                          ? 'Oops sorry, no information'
-                          : 'Sin información disponible',
+                      (provider.activateS.value == 1) ? 'Oops sorry, no information' : 'Sin información disponible',
                       style: const TextStyle(
                         color: Colors.grey,
                       ),
@@ -334,32 +313,27 @@ class _DetailBusinessState extends State<DetailBusiness> {
         if (Platform.isIOS) {
           final documentDatabase = DocumentDatabase();
 
-          final res = await documentDatabase
-              .getDocumentForId(detail.idBusiness.toString());
+          final res = await documentDatabase.getDocumentForId(detail.idBusiness.toString());
 
-          if (res[0].documentUrlIntern != 'null' &&
-              res[0].documentUrlIntern!.isNotEmpty) {
+          if (res[0].documentUrlIntern != 'null' && res[0].documentUrlIntern!.isNotEmpty) {
             // ignore: unused_local_variable
-            final _result =
-                OpenFile.open(res[0].documentUrlIntern).whenComplete(() {});
+            final _result = OpenFile.open(res[0].documentUrlIntern).whenComplete(() {});
           } else {
             final testdir = (await getApplicationDocumentsDirectory()).path;
 
             options = DownloaderUtils(
               progressCallback: (current, total) {
-                provider2.cargando.value =
-                    double.parse((current / total * 100).toStringAsFixed(2));
+                provider2.cargando.value = double.parse((current / total * 100).toStringAsFixed(2));
               },
               file: File('/$testdir/${detail.catalogueBusiness}'),
               progress: ProgressImplementation(),
               onDone: () async {
                 DocumentModel documentModel = DocumentModel();
                 documentModel.idDocument = detail.idBusiness;
-                documentModel.stateDocument = detail.stateBusiness;
+                documentModel.stateDocument = detail.estadoNegocio;
                 documentModel.documentFile = detail.catalogueBusiness;
                 documentModel.documentTitle = detail.nameBusiness;
-                documentModel.documentUrlIntern =
-                    '$testdir/${detail.catalogueBusiness}';
+                documentModel.documentUrlIntern = '$testdir/${detail.catalogueBusiness}';
 
                 await documentDatabase.insertDocument(documentModel);
                 OpenFile.open('$testdir/${detail.catalogueBusiness}');
@@ -368,36 +342,31 @@ class _DetailBusinessState extends State<DetailBusiness> {
               },
               deleteOnCancel: true,
             );
-            core = await Flowder.download(
-                '$apiBaseURL/${detail.catalogueBusiness}', options);
+            core = await Flowder.download('$apiBaseURL/${detail.catalogueBusiness}', options);
           }
         } else {
           final documentDatabase = DocumentDatabase();
 
-          final res = await documentDatabase
-              .getDocumentForId(detail.idBusiness.toString());
+          final res = await documentDatabase.getDocumentForId(detail.idBusiness.toString());
 
-          if (res[0].documentUrlIntern != 'null' &&
-              res[0].documentUrlIntern!.isNotEmpty) {
+          if (res[0].documentUrlIntern != 'null' && res[0].documentUrlIntern!.isNotEmpty) {
             OpenFile.open(res[0].documentUrlIntern);
           } else {
             final testdir = (await getApplicationDocumentsDirectory()).path;
 
             options = DownloaderUtils(
               progressCallback: (current, total) {
-                provider2.cargando.value =
-                    double.parse((current / total * 100).toStringAsFixed(2));
+                provider2.cargando.value = double.parse((current / total * 100).toStringAsFixed(2));
               },
               file: File('/$testdir/${detail.catalogueBusiness}'),
               progress: ProgressImplementation(),
               onDone: () async {
                 DocumentModel documentModel = DocumentModel();
                 documentModel.idDocument = detail.idBusiness;
-                documentModel.stateDocument = detail.stateBusiness;
+                documentModel.stateDocument = detail.estadoNegocio;
                 documentModel.documentFile = detail.catalogueBusiness;
                 documentModel.documentTitle = detail.nameBusiness;
-                documentModel.documentUrlIntern =
-                    '$testdir/${detail.catalogueBusiness}';
+                documentModel.documentUrlIntern = '$testdir/${detail.catalogueBusiness}';
 
                 await documentDatabase.insertDocument(documentModel);
                 OpenFile.open('$testdir/${detail.catalogueBusiness}');
@@ -407,8 +376,7 @@ class _DetailBusinessState extends State<DetailBusiness> {
               deleteOnCancel: true,
             );
 
-            core = await Flowder.download(
-                '$apiBaseURL/${detail.catalogueBusiness}', options);
+            core = await Flowder.download('$apiBaseURL/${detail.catalogueBusiness}', options);
           }
         }
       } else if (await Permission.storage.request().isPermanentlyDenied) {
