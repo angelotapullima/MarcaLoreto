@@ -28,6 +28,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           const SizedBox.expand(),
@@ -36,7 +37,7 @@ class _SplashState extends State<Splash> {
               width: ScreenUtil().setWidth(350),
               height: ScreenUtil().setHeight(350),
               child: const Image(
-                image: AssetImage('assets/img/logos/logo.png'),
+                image: AssetImage('assets/img/logos/splash.png'),
               ),
             ),
           ),

@@ -50,8 +50,8 @@ class _HeaderDescubreState extends State<HeaderDescubre> {
     return SliverPersistentHeader(
       floating: true,
       delegate: SliverCustomHeaderDelegate(
-        minHeight: ScreenUtil().setHeight(55),
-        maxHeight: ScreenUtil().setHeight(55),
+        minHeight: ScreenUtil().setHeight(48),
+        maxHeight: ScreenUtil().setHeight(48),
         child: Container(
           color: Colors.white,
           child: Row(
@@ -63,7 +63,7 @@ class _HeaderDescubreState extends State<HeaderDescubre> {
                   valueListenable: provider.activate,
                   builder: (BuildContext context, int data, Widget? child) {
                     return Text(
-                      (provider.activateS.value == 1) ? 'Discover' : 'Descúbre',
+                      (provider.activateS.value == 1) ? 'Discover' : 'Descubre',
                       style: TextStyle(
                         color: const Color(0xFF008d36),
                         fontSize: ScreenUtil().setHeight(24),

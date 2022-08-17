@@ -24,7 +24,7 @@ class BusinessPage extends StatelessWidget {
                 itemCount: snapshot.data!.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: 0.76,
                   mainAxisSpacing: 0,
                   crossAxisSpacing: ScreenUtil().setWidth(10),
                 ),
@@ -35,14 +35,12 @@ class BusinessPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         PageRouteBuilder(
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) {
+                          pageBuilder: (context, animation, secondaryAnimation) {
                             return DetailBusiness(
                               idBusiness: business.idBusiness.toString(),
                             );
                           },
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
                             var begin = const Offset(0.0, 1.0);
                             var end = Offset.zero;
                             var curve = Curves.ease;
@@ -74,13 +72,10 @@ class BusinessPage extends StatelessWidget {
                             height: ScreenUtil().setHeight(132),
                             width: double.infinity,
                             child: CachedNetworkImage(
-                              placeholder: (context, url) =>
-                                  const CupertinoActivityIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  Image.asset('assets/img/logos/logo.png'),
+                              placeholder: (context, url) => const CupertinoActivityIndicator(),
+                              errorWidget: (context, url, error) => Image.asset('assets/img/logos/logo.png'),
                               imageUrl: '$apiBaseURL/${business.imageBusiness}',
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
+                              imageBuilder: (context, imageProvider) => Container(
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(20),
@@ -98,12 +93,9 @@ class BusinessPage extends StatelessWidget {
                             height: ScreenUtil().setHeight(5),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: ScreenUtil().setWidth(5)),
+                            padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(5)),
                             child: Text(
-                              (business.activateEnglish == '1')
-                                  ? '${business.nameCategoryEn}'
-                                  : '${business.nameCategory}',
+                              (business.activateEnglish == '1') ? '${business.nameCategoryEn}' : '${business.nameCategory}',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: Colors.grey,
@@ -116,8 +108,7 @@ class BusinessPage extends StatelessWidget {
                             height: ScreenUtil().setHeight(5),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: ScreenUtil().setWidth(5)),
+                            padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(5)),
                             child: Text(
                               '${business.nameBusiness}',
                               textAlign: TextAlign.left,
