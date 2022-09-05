@@ -50,7 +50,7 @@ dependencies:
   photo_view: ^0.13.0
   flutter_speed_dial: ^5.1.0
   url_launcher: ^6.1.0
-  open_file: ^3.2.1
+  open_filex: ^4.0.1
   percent_indicator: ^4.2.2
   webview_flutter: ^3.0.2
   fluttertoast: ^8.0.9
