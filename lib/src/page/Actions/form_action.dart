@@ -63,7 +63,7 @@ class _FormActionState extends State<FormAction> {
                         children: [
                           SizedBox(
                             height: ScreenUtil().setHeight(60),
-                            child: Image.asset('assets/img/logos/logo.png'),
+                            child: Image.asset('assets/img/logos/logoOff.png'),
                           ),
                           Text(
                             (provider.activateS.value == 1)
@@ -100,9 +100,7 @@ class _FormActionState extends State<FormAction> {
                               ),
                               decoration: InputDecoration(
                                 label: Text(
-                                  (provider.activateS.value == 1)
-                                      ? 'Name'
-                                      : 'Nombre',
+                                  (provider.activateS.value == 1) ? 'Name' : 'Nombre',
                                   style: TextStyle(
                                     fontSize: ScreenUtil().setSp(14),
                                     fontWeight: FontWeight.w400,
@@ -149,15 +147,10 @@ class _FormActionState extends State<FormAction> {
                                 if (_emailController.value.text.isNotEmpty) {
                                   _controller.changeCargando(true);
                                   final _api = FormActionApi();
-                                  final res = await _api.sendData(
-                                      _nameController.value.text.trim(),
-                                      _emailController.value.text.trim());
+                                  final res = await _api.sendData(_nameController.value.text.trim(), _emailController.value.text.trim());
                                   if (res == 1) {
                                     showToast2(
-                                        (provider.activateS.value == 1)
-                                            ? 'Data sent successfully'
-                                            : 'Datos enviados correctamente',
-                                        Colors.green);
+                                        (provider.activateS.value == 1) ? 'Data sent successfully' : 'Datos enviados correctamente', Colors.green);
                                     Navigator.pop(context);
                                   } else {
                                     showToast2(
@@ -168,32 +161,20 @@ class _FormActionState extends State<FormAction> {
                                   }
                                   _controller.changeCargando(false);
                                 } else {
-                                  showToast2(
-                                      (provider.activateS.value == 1)
-                                          ? 'Email required'
-                                          : 'Email requerido',
-                                      Colors.redAccent);
+                                  showToast2((provider.activateS.value == 1) ? 'Email required' : 'Email requerido', Colors.redAccent);
                                 }
                               } else {
-                                showToast2(
-                                    (provider.activateS.value == 1)
-                                        ? 'Name required'
-                                        : 'Nombre requerido',
-                                    Colors.redAccent);
+                                showToast2((provider.activateS.value == 1) ? 'Name required' : 'Nombre requerido', Colors.redAccent);
                               }
                             },
-                            child: Text((provider.activateS.value == 1)
-                                ? 'Send'
-                                : 'Enviar'),
+                            child: Text((provider.activateS.value == 1) ? 'Send' : 'Enviar'),
                           ),
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
                             child: Text(
-                              (provider.activateS.value == 1)
-                                  ? 'Return'
-                                  : 'Volver',
+                              (provider.activateS.value == 1) ? 'Return' : 'Volver',
                               style: TextStyle(
                                 color: Colors.redAccent,
                               ),
@@ -359,10 +340,7 @@ class _FormActionState extends State<FormAction> {
             builder: (_, p) {
               return (_controller.cargando)
                   ? Container(
-                      height: double.infinity,
-                      width: double.infinity,
-                      color: Colors.black.withOpacity(0.3),
-                      child: CupertinoActivityIndicator())
+                      height: double.infinity, width: double.infinity, color: Colors.black.withOpacity(0.3), child: CupertinoActivityIndicator())
                   : Container();
             },
           ),

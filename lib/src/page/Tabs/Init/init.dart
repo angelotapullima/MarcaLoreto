@@ -6,7 +6,6 @@ import 'package:marca_loreto/src/page/Tabs/Init/sections.dart';
 import 'package:marca_loreto/src/page/Tabs/init/banners.dart';
 import 'package:marca_loreto/src/page/Tabs/init/blogs.dart';
 import 'package:marca_loreto/src/page/change_language.dart';
-import 'package:marca_loreto/src/page/policies.dart';
 import 'package:marca_loreto/src/widget/sliver_header_delegate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
